@@ -1,0 +1,247 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\ul\f0\fs48\lang9  WEB SCRAPING \f1\endash  ASSIGNMENT 2\par
+\ulnone\fs28 Q1: Write a python program to scrape data for \ldblquote Data Analyst\rdblquote  Job position in \ldblquote Bangalore\rdblquote  location. You\par
+have to scrape the job-title, job-location, company_name, experience_required. You have to scrape first 10\par
+jobs data.\par
+
+\pard\sa200\sl276\slmult1\f0\lang1033 Answer - \f1\lang9 # Step 1: Get the webpage\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.shine.com }}{\fldrslt{https://www.shine.com\ul0\cf0}}}}\f1\fs28 "\par
+response = requests.get(url)\par
+\par
+# Step 2: Enter search criteria\par
+job_title = "Data Analyst"\par
+location = "Bangalore"\par
+\par
+# Step 3: Perform search\par
+search_url = f"\{url\}/job-search/\{job_title\}-jobs-in-\{location\}"\par
+response = requests.get(search_url)\par
+\par
+# Step 4: Scrape data for the first 10 jobs\par
+soup = BeautifulSoup(response.content, "html.parser")\par
+job_results = soup.find_all("li", class_="search_listing")\par
+\par
+data = []\par
+for job in job_results[:10]:\par
+  title = job.find("h2").text.strip()\par
+  company = job.find("span", class_="company_name").text.strip()\par
+  location = job.find("span", class_="location").text.strip()\par
+  experience = job.find("span", class_="exp").text.strip()\par
+\par
+  data.append(\{\par
+  "Job Title": title,\par
+  "Company Name": company,\par
+  "Job Location": location,\par
+  "Experience Required": experience\par
+  \})\par
+\par
+# Step 5: Create a dataframe of the scraped data\par
+df = pd.DataFrame(data)\par
+Q2:Write a python program to scrape data for \ldblquote Data Scientist\rdblquote  Job position in\ldblquote Bangalore\rdblquote  location. You\par
+have to scrape the job-title, job-location, company_name. You have to scrape first 10 jobs data.\par
+This task will be done in following ste\f0\lang1033 ps:\par
+Answer - # Step 1: Get the webpage\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.shine.com }}{\fldrslt{https://www.shine.com\ul0\cf0}}}}\f0\fs28 "\par
+response = requests.get(url)\par
+\par
+# Step 2: Enter search criteria and click search button\par
+job_title = "Data Scientist"\par
+location = "Bangalore"\par
+payload = \{\par
+  "search_query": job_title,\par
+  "loc_query": location\par
+\}\par
+response = requests.post(url, data=payload)\par
+\par
+# Step 3: Scrape the data for the first 10 jobs\par
+soup = BeautifulSoup(response.content, "html.parser")\par
+job_results = soup.find_all("div", class_="result-display")\par
+job_data = []\par
+for result in job_results[:10]:\par
+  title = result.find("h2").text.strip()\par
+  company = result.find("span", class_="company-name").text.strip()\par
+  location = result.find("span", class_="location").text.strip()\par
+  job_data.append(\{"Job Title": title, "Company Name": company, "Location": location\})\par
+\par
+# Step 4: Create a dataframe of the scraped data\par
+df = pd.DataFrame(job_data)\par
+\par
+#Step 5: Print the dataframe\par
+print(df)\par
+Q3: In this question you have to scrape data using the filters available on the webpage\par
+ You have to use the location and salary filter.\par
+You have to scrape data for \ldblquote Data Scientist\rdblquote  designation for first 10 job results.\par
+You have to scrape the job-title, job-location, company name, experience required.\par
+The location filter to be used is \ldblquote Delhi/NCR\rdblquote . The salary filter to be used is \ldblquote 3-6\rdblquote  lakhs\par
+Answer - 1) Send a GET request to the Shine.com homepage:\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.shine.com/ }}{\fldrslt{https://www.shine.com/\ul0\cf0}}}}\f0\fs28 "\par
+response = requests.get(url)\par
+2)Find the search input field and enter "Data Scientist" as the value:\par
+search_input = soup.find('input', \{'id': 'txt_search'\})\par
+search_input['value'] = 'Data Scientist'\par
+3)Find the search button and click it:\par
+search_button = soup.find('button', \{'id': 'btn_search'\})\par
+response = requests.post(url, data=\{'txt_search': 'Data Scientist'\})\par
+4)Apply the location and salary filters by checking the respective checkboxes:\par
+soup = BeautifulSoup(response.content, 'html.parser')\par
+location_filter = soup.find('input', \{'id': 'chk_location_1'\})\par
+location_filter['checked'] = True\par
+salary_filter = soup.find('input', \{'id': 'chk_salary_1'\})\par
+salary_filter['checked'] = True\par
+5)Find the job listings and scrape the required data for the first 10 results:\par
+job_listings = soup.find_all('div', \{'class': 'w-100'\})\par
+data = []\par
+for job in job_listings[:10]:\par
+  title = job.find('h3').text.strip()\par
+  location = job.find('span', \{'class': 'location'\}).text.strip()\par
+  company = job.find('span', \{'class': 'company-name'\}).text.strip()\par
+  experience = job.find('span', \{'class': 'exp'\}).text.strip()\par
+  data.append([title, location, company, experience])\par
+6)Create a dataframe from the scraped data:\par
+df = pd.DataFrame(data, columns=['Job Title', 'Job Location', 'Company N\}\par
+Q4: Scrape data of first 100 sunglasses listings on flipkart.com. You have to scrape four attributes:\par
+6. Brand\par
+7. ProductDescription\par
+8. Price\par
+The attributes which you have to scrape is ticked marked in the below image.\par
+To scrape the data you have to go through following steps:\par
+1. Go to Flipkart webpage by url :{{\field{\*\fldinst{HYPERLINK https://www.flipkart.com/ }}{\fldrslt{https://www.flipkart.com/\ul0\cf0}}}}\f0\fs28\par
+2. Enter \ldblquote sunglasses\rdblquote  in the search fieldwhere \ldblquote search for products, brands and more\rdblquote  is written and\par
+click the search icon\par
+3. After that you will reach to the page having a lot of sunglasses. From this page you can scrap the\par
+required data as usual.\par
+4. After scraping data from the first page, go to the \ldblquote Next\rdblquote  Button at the bottom other page , then\par
+click on it.\par
+5. Now scrape data from this page as usual\par
+6. Repeat this until you get data for 100sunglasses \par
+Set up the Selenium webdriver:\par
+driver = webdriver.Chrome('path_to_chromedriver')\par
+Make sure you have downloaded the ChromeDriver executable and provided the correct path.\par
+\par
+Answer - Open the Flipkart website:\par
+driver.get('https://www.flipkart.com/')\par
+Search for sunglasses:\par
+search_box = driver.find_element(By.XPATH, "//input[@title='Search for products, brands and more']")\par
+search_box.send_keys('sunglasses')\par
+search_box.submit()\par
+Scrape the required attributes from the first 100 listings:\par
+sunglasses = driver.find_elements(By.XPATH, "//div[@class='_2kHMtA']")\par
+data = []\par
+\par
+for i in range(100):\par
+  brand = sunglasses[i].find_element(By.XPATH, ".//div[@class='_2WkVRV']")\par
+  description = sunglasses[i].find_element(By.XPATH, ".//a[@class='IRpwTa']")\par
+  price = sunglasses[i].find_element(By.XPATH, ".//div[@class='_30jeq3 _1_WHN1']")\par
+  \par
+  data.append(\{\par
+  'Brand': brand.text,\par
+  'ProductDescription': description.text,\par
+  'Price': price.text\par
+  \})\par
+Print the scraped data:\par
+for item in data:\par
+  print(item)\par
+Close the webdriver:\par
+driver.quit()\par
+Q5: Scrape 100 reviews data from flipkart.com for iphone11 phone. You have to go the link:\par
+{{\field{\*\fldinst{HYPERLINK https://www.flipkart.com/apple-iphone-11-black-64-gb/productreviews/itm4e5041ba101fd?pid=MOBFWQ6BXGJCEYNY&lid=LSTMOBFWQ6BXGJCEYNYZXSHRJ&market }}{\fldrslt{https://www.flipkart.com/apple-iphone-11-black-64-gb/productreviews/itm4e5041ba101fd?pid=MOBFWQ6BXGJCEYNY&lid=LSTMOBFWQ6BXGJCEYNYZXSHRJ&market\ul0\cf0}}}}\f0\fs28\par
+place=FLIPKART\par
+As shown in the above page you have to scrape the tick marked attributes. These are:\par
+1. Rating\par
+2. Review summary\par
+3. Full review\par
+4. You have to scrape this data for first 100reviews.\par
+Answer - 1) 4.6\par
+2)You get a 6.1-inch liquid retina display with a big notch on top that has all the sensors, camera and the speaker in it. However, when compared side by side with an iPhone XR, we found the screen of the iPhone 11 to be slightly better in terms of brightness level and sunlight legibility.\par
+3)11,502\par
+4)for review in reviews[:100]:\par
+  rating = review.find('div', \{'class': '_3LWZlK _1BLPMq'\}).text\par
+  summary = review.find('p', \{'class': '_2-N8zT'\}).text\par
+  full_review = review.find('div', \{'class': 't-ZTKy'\}).text\par
+  \par
+  # Do something with the extracted data (e.g., store it in a list or write to a file)\par
+Q6: Scrape data forfirst 100 sneakers you find whenyou visit flipkart.com and search for \ldblquote sneakers\rdblquote  inthe\par
+search field.\par
+1. Brand\par
+2. ProductDescription\par
+3. Price\par
+As shown in the below image, you have to scrape the above attributes.\par
+Answer - Brand_name\tab P_price\tab Pr_desc\tab P_discount\par
+0\tab Chevit\tab\u8377?448\u8377?1,49870% off\tab Unique & Perfect Collection Combo Pack of 02 S...\tab 70% off\par
+1\tab India hub\tab\u8377?389\u8377?2,99987% off\tab Combo pack of 2 casual sneaker shoes for men S...\tab 87% off\par
+2\tab CALCADOS\tab\u8377?748\u8377?1,99662% off\tab White Sneaker For Men's/Boy's Sneakers For Men\tab 62% off\par
+3\tab ORICUM\tab\u8377?377\u8377?99862% off\tab Sneakers For Men\tab 62% off\par
+4\tab Shoes Bank\tab\u8377?349\u8377?99965% off\tab Sneakers For Men\tab 65% off\par
+...\tab ...\tab ...\tab ...\tab ...\par
+95\tab 3SIX5\tab\u8377?474\u8377?99952% off\tab Casual , Partywear Sneakers Shoes For Men's An...\tab 57% off\par
+96\tab Birde\tab\u8377?399\u8377?99960% off\tab casual for men (beige 06) Sneakers For Men\tab 43% off\par
+97\tab restinfoot\tab\u8377?499\u8377?99950% off\tab Sneakers For Men\tab 62% off\par
+98\tab ASTEROID\tab\u8377?377\u8377?99962% off\tab Combo pack of 2 Casuals Shoes For Men (1563-15...\tab 75% off\par
+99\tab kardam&sons\tab\u8377?242\u8377?69965% off\tab Combo Pack of 4 Latest Collection Stylish Casu...\tab 81% off\par
+Q7: Go to webpage {{\field{\*\fldinst{HYPERLINK https://www.amazon.in/ }}{\fldrslt{https://www.amazon.in/\ul0\cf0}}}}\f0\fs28  Enter \ldblquote Laptop\rdblquote  in the search field and then click the search icon. Then\par
+set CPU Type filter to \ldblquote Intel Core i7\rdblquote  as shown in the below image:\par
+After setting the filters scrape first 10 laptops data. You have to scrape 3 attributes for each laptop:\par
+1. Title\par
+2. Ratings\par
+3. Price\par
+Answer -1) intel core i7\par
+2)4 out of 5\par
+3) \u8377?100,000 and above\par
+Q8: Write a python program to scrape data for Top 1000 Quotes of All Time.\par
+The above task will be done in following steps:\par
+1. First get the webpagehttps://www.azquotes.com/\par
+2. Click on TopQuotes\par
+3. Than scrap a) Quote b) Author c) Type Of Quotes\par
+1)Open the webpage:\par
+driver.get("https://www.azquotes.com/")\par
+2)Click on "Top Quotes":\par
+top_quotes_button = driver.find_element(By.LINK_TEXT, "Top Quotes")\par
+top_quotes_button.click()\par
+3)quotes = driver.find_elements(By.CSS_SELECTOR, ".title a")\par
+authors = driver.find_elements(By.CSS_SELECTOR, ".author a")\par
+types = driver.find_elements(By.CSS_SELECTOR, ".kw-box a")\par
+Q9: Write a python program to display list of respected former Prime Ministers of India(i.e. Name, Born-Dead,\par
+Term of office, Remarks) from {{\field{\*\fldinst{HYPERLINK https://www.jagranjosh.com/ }}{\fldrslt{https://www.jagranjosh.com/\ul0\cf0}}}}\f0\fs28\par
+This task will be done in following steps:\par
+1. First get the webpagehttps://www.jagranjosh.com/\par
+2. Then You have to click on the GK option\par
+3. Then click on the List of all Prime Ministers of India\par
+4. Then scrap the mentioned data and make theDataFrame\par
+Answer - 1)Open the webpage:\par
+driver.get('https://www.jagranjosh.com/')\par
+2)Click on the "GK" option:\par
+gk_option = driver.find_element_by_link_text('GK')\par
+gk_option.click()\par
+3)Click on the "List of all Prime Ministers of India":\par
+pm_option = driver.find_element_by_link_text('List of all Prime Ministers of India')\par
+pm_option.click()\par
+4)df = pd.DataFrame(data, columns=['Name', 'Born-Dead', 'Term of Office', 'Remarks'])\par
+Q10: Write a python program to display list of 50 Most expensive cars in the world (i.e.\par
+Car name and Price) from {{\field{\*\fldinst{HYPERLINK https://www.motor1.com/ }}{\fldrslt{https://www.motor1.com/\ul0\cf0}}}}\f0\fs28\par
+This task will be done in following steps:\par
+1. First get the webpage {{\field{\*\fldinst{HYPERLINK https://www.motor1.com/ }}{\fldrslt{https://www.motor1.com/\ul0\cf0}}}}\f0\fs28\par
+2. Then You have to type in the search bar \rquote 50 most expensive cars\rquote\par
+3. Then click on 50 most expensive carsin the world..\par
+4. Then scrap the mentioned data and make the dataframe\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\f1\lang9\par
+\par
+\par
+\par
+\par
+\par
+\f0\par
+}
+ 
