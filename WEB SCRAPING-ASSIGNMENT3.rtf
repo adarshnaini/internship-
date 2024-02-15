@@ -1,0 +1,358 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\ul\f0\fs48\lang9 WEB SCRAPING-ASSIGNMENT3\par
+\par
+
+\pard\sa200\sl276\slmult1\ulnone\fs28 1. Write a python program which searches all the product under a particular product from {{\field{\*\fldinst{HYPERLINK www.amazon.in }}{\fldrslt{www.amazon.in\ul0\cf0}}}}\f0\fs28 . The\par
+product to be searched will be taken as input from user. For e.g. If user input is \lquote guitar\rquote . Then search for\par
+Answer - guitars.def search_product(product):\par
+  # Format the search query\par
+  search_query = product.replace(' ', '+')\par
+\par
+  # Send a GET request to Amazon.in search page\par
+  url = f'{{\field{\*\fldinst{HYPERLINK https://www.amazon.in/s?k=\{search_query\} }}{\fldrslt{https://www.amazon.in/s?k=\{search_query\}\ul0\cf0}}}}\f0\fs28 '\par
+  response = requests.get(url)\par
+\par
+  # Parse the HTML content using BeautifulSoup\par
+  soup = BeautifulSoup(response.content, 'html.parser')\par
+\par
+  # Find all the product elements on the page\par
+  products = soup.find_all('div', \{'data-component-type': 's-search-result'\})\par
+2. In the above question, now scrape the following details of each product listed in first 3 pages of your search\par
+results and save it in a data frame and csv. In case if any product has less than 3 pages in search results then\par
+scrape all the products available under that product name. Details to be scraped are: "Brand\par
+Name", "Name of the Product", "Price", "Return/Exchange", "Expected Delivery", "Availability" and\par
+\ldblquote Product URL\rdblquote . In case, if any of the details are missing for any of the product then replace it by \ldblquote -\ldblquote . \par
+3. Write a python program to access the search bar and search button on images.google.com and scrape 10\par
+images each for keywords \lquote fruits\rquote , \lquote cars\rquote  and \lquote Machine Learning\rquote , \lquote Guitar\rquote , \lquote Cakes\rquote . \par
+Answer - # Set up the Chrome driver\par
+driver = webdriver.Chrome('path_to_chromedriver')\par
+\par
+# Open images.google.com\par
+driver.get('https://images.google.com')\par
+\par
+# Define the keywords\par
+keywords = ['fruits', 'cars', 'Machine Learning', 'Guitar', 'Cakes']\par
+\par
+# Scrape 10 images for each keyword\par
+for keyword in keywords:\par
+  # Find the search bar element and enter the keyword\par
+  search_bar = driver.find_element_by_name('q')\par
+  search_bar.clear()\par
+  search_bar.send_keys(keyword)\par
+4. Write a python program to search for a smartphone(e.g.: Oneplus Nord, pixel 4A, etc.) on {{\field{\*\fldinst{HYPERLINK www.flipkart.com }}{\fldrslt{www.flipkart.com\ul0\cf0}}}}\f0\fs28\par
+and scrape following details for all the search results displayed on 1st page. Details to be scraped: \ldblquote Brand\par
+Name\rdblquote , \ldblquote Smartphone name\rdblquote , \ldblquote Colour\rdblquote , \ldblquote RAM\rdblquote , \ldblquote Storage(ROM)\rdblquote , \ldblquote Primary Camera\rdblquote ,\par
+\ldblquote Secondary Camera\rdblquote , \ldblquote Display Size\rdblquote , \ldblquote Battery Capacity\rdblquote , \ldblquote Price\rdblquote , \ldblquote Product URL\rdblquote . Incase if any of the\par
+details is missing then replace it by \ldblquote - \ldblquote . Save your results in a dataframe and CSV. \par
+  ANSWER - # Function to scrape smartphone details\par
+def scrape_smartphones():\par
+  url = "{{\field{\*\fldinst{HYPERLINK https://www.flipkart.com/search?q=smartphone }}{\fldrslt{https://www.flipkart.com/search?q=smartphone\ul0\cf0}}}}\f0\fs28 "  # Replace "smartphone" with your desired search query\par
+  response = requests.get(url)\par
+  soup = BeautifulSoup(response.content, 'html.parser')\par
+  \par
+  smartphones = []\par
+  \par
+  results = soup.find_all('div', \{'class': '_1AtVbE'\})\par
+  \par
+  for result in results:\par
+  details = \{\}\par
+  \par
+  # Extracting details from each search result\par
+  details['Brand Name'] = result.find('div', \{'class': '_4rR01T'\}).text\par
+  details['Smartphone Name'] = result.find('a', \{'class': 'IRpwTa'\}).text\par
+  details['Colour'] = result.find('div', \{'class': '_2WkVRV'\}).text\par
+  details['RAM'] = result.find('ul', \{'class': '_1xgFaf'\}).find_all('li')[0].text\par
+  details['Storage(ROM)'] = result.find('ul', \{'class': '_1xgFaf'\}).find_all('li')[1].text\par
+  details['Primary Camera'] = result.find('ul', \{'class': '_1xgFaf'\}).find_all('li')[2].text\par
+  details['Secondary Camera'] = result.find('ul', \{'class': '_1xgFaf'\}).find_all('li')[3].text\par
+  details['Display Size'] = result.find('ul', \{'class': '_1xgFaf'\}).find_all('li')[4].text\par
+  details['Battery Capacity'] = result.find('ul', \{'class': '_1xgFaf'\}).find_all('li')[5].text\par
+  details['Price'] = result.find('div', \{'class': '_30jeq3 _1_WHN1'\}).text\par
+  details['Product URL'] = "{{\field{\*\fldinst{HYPERLINK https://www.flipkart.com }}{\fldrslt{https://www.flipkart.com\ul0\cf0}}}}\f0\fs28 " + result.find('a', \{'class': 'IRpwTa'\})['href']\par
+  \par
+  smartphones.append(details)\par
+  \par
+  return smartphones\par
+\par
+Answer - # Scrape smartphone details\par
+smartphones = scrape_smartphones()\par
+\par
+# Create dataframe from the scraped details\par
+df = pd.DataFrame(smartphones)\par
+\par
+# Replace missing details with "-"\par
+df.fillna("-", inplace=True)\par
+\par
+# Save dataframe to CSV\par
+df.to_csv('smartphones.csv', index=False)\par
+def get_coordinates(city):\par
+  # Format the city name for the URL\par
+  formatted_city = city.replace(" ", "+")\par
+\par
+  # Send a GET request to Google Maps with the formatted city name\par
+  url = f"{{\field{\*\fldinst{HYPERLINK https://www.google.com/maps/search/\{formatted_city\} }}{\fldrslt{https://www.google.com/maps/search/\{formatted_city\}\ul0\cf0}}}}\f0\fs28 "\par
+  response = requests.get(url)\par
+\par
+  # Parse the HTML response using BeautifulSoup\par
+  soup = BeautifulSoup(response.text, "html.parser")\par
+\par
+  # Find the element containing the coordinates\par
+  coordinates_element = soup.find("meta", itemprop="image")\par
+\par
+  # Extract the coordinates from the element's content attribute\par
+  coordinates = coordinates_element["content"].split(";")[1].strip().split(",")\par
+\par
+  # Return the latitude and longitude as a tuple\par
+  return float(coordinates[0]), float(coordinates[1])\par
+\par
+# Example usage\par
+city = input("Enter a city name: ")\par
+latitude, longitude = get_coordinates(city)\par
+print(f"The coordinates of \{city\} are: Latitude: \{latitude\}, Longitude: \{longitude\}")\par
+def get_coordinates(city):\par
+  # Format the city name for the URL\par
+  formatted_city = city.replace(" ", "+")\par
+\par
+  # Send a GET request to Google Maps with the formatted city name\par
+  url = f"{{\field{\*\fldinst{HYPERLINK https://www.google.com/maps/search/\{formatted_city\} }}{\fldrslt{https://www.google.com/maps/search/\{formatted_city\}\ul0\cf0}}}}\f0\fs28 "\par
+  response = requests.get(url)\par
+\par
+  # Parse the HTML response using BeautifulSoup\par
+  soup = BeautifulSoup(response.text, "html.parser")\par
+\par
+  # Find the element containing the coordinates\par
+  coordinates_element = soup.find("meta", itemprop="image")\par
+\par
+  # Extract the coordinates from the element's content attribute\par
+  coordinates = coordinates_element["content"].split(";")[1].strip().split(",")\par
+\par
+  # Return the latitude and longitude as a tuple\par
+  return float(coordinates[0]), float(coordinates[1])\par
+\par
+# Example usage\par
+city = input("Enter a city name: ")\par
+latitude, longitude = get_coordinates(city)\par
+print(f"The coordinates of \{city\} are: Latitude: \{latitude\}, Longitude: \{longitude\}")\par
+5. Write a program to scrap geospatial coordinates (latitude, longitude) of a city searched on google maps.\par
+def get_coordinates(city):\par
+  Answer - # Format the city name for the URL\par
+  formatted_city = city.replace(" ", "+")\par
+\par
+  # Send a GET request to Google Maps with the formatted city name\par
+  url = f"{{\field{\*\fldinst{HYPERLINK https://www.google.com/maps/search/\{formatted_city\} }}{\fldrslt{https://www.google.com/maps/search/\{formatted_city\}\ul0\cf0}}}}\f0\fs28 "\par
+  response = requests.get(url)\par
+\par
+  # Parse the HTML response using BeautifulSoup\par
+  soup = BeautifulSoup(response.text, "html.parser")\par
+\par
+  # Find the element containing the coordinates\par
+  coordinates_element = soup.find("meta", itemprop="image")\par
+\par
+  # Extract the coordinates from the element's content attribute\par
+  coordinates = coordinates_element["content"].split(";")[1].strip().split(",")\par
+\par
+  # Return the latitude and longitude as a tuple\par
+  return float(coordinates[0]), float(coordinates[1])\par
+\par
+# Example usage\par
+city = input("Enter a city name: ")\par
+latitude, longitude = get_coordinates(city)\par
+print(f"The coordinates of \{city\} are: Latitude: \{latitude\}, Longitude: \{longitude\}")\par
+5. Write a program to scrap geospatial coordinates (latitude, longitude) of a city searched on google maps\par
+def get_coordinates(city):\par
+  # Format the city name for the URL\par
+  formatted_city = city.replace(" ", "+")\par
+\par
+  # Send a GET request to Google Maps with the formatted city name\par
+  url = f"{{\field{\*\fldinst{HYPERLINK https://www.google.com/maps/search/\{formatted_city\} }}{\fldrslt{https://www.google.com/maps/search/\{formatted_city\}\ul0\cf0}}}}\f0\fs28 "\par
+  response = requests.get(url)\par
+\par
+  # Parse the HTML response using BeautifulSoup\par
+  soup = BeautifulSoup(response.text, "html.parser")\par
+\par
+  # Find the element containing the coordinates\par
+  coordinates_element = soup.find("meta", itemprop="image")\par
+\par
+  # Extract the coordinates from the element's content attribute\par
+  coordinates = coordinates_element["content"].split(";")[1].strip().split(",")\par
+\par
+  # Return the latitude and longitude as a tuple\par
+  return float(coordinates[0]), float(coordinates[1])\par
+\par
+# Example usage\par
+city = input("Enter a city name: ")\par
+latitude, longitude = get_coordinates(city)\par
+print(f"The coordinates of \{city\} are: Latitude: \{latitude\}, Longitude: \{longitude\}")\par
+5. Write a program to scrap geospatial coordinates (latitude, longitude) of a city searched on google maps.\par
+def get_coordinates(city):\par
+  # Format the city name for the URL\par
+  formatted_city = city.replace(" ", "+")\par
+# Send a GET request to Google Maps with the formatted city name\par
+  url = f"{{\field{\*\fldinst{HYPERLINK https://www.google.com/maps/search/\{formatted_city\} }}{\fldrslt{https://www.google.com/maps/search/\{formatted_city\}\ul0\cf0}}}}\f0\fs28 "\par
+  response = requests.get(url)\par
+\par
+  # Parse the HTML response using BeautifulSoup\par
+  soup = BeautifulSoup(response.text, "html.parser")\par
+\par
+  # Find the element containing the coordinates\par
+  coordinates_element = soup.find("meta", itemprop="image")\par
+\par
+  # Extract the coordinates from the element's content attribute\par
+  coordinates = coordinates_element["content"].split(";")[1].strip().split(",")\par
+\par
+  # Return the latitude and longitude as a tuple\par
+  return float(coordinates[0]), float(coordinates[1])\par
+\par
+# Example usage\par
+city = input("Enter a city name: ")\par
+latitude, longitude = get_coordinates(city)\par
+print(f"The coordinates of \{city\} are: Latitude: \{latitude\}, Longitude: \{longitude\}")\par
+5. Write a program to scrap geospatial coordinates (latitude, longitude) of a city searched on google maps. \par
+def get_coordinates(city):\par
+  # Format the city name for the URL\par
+  formatted_city = city.replace(" ", "+")\par
+ # Send a GET request to Google Maps with the formatted city name\par
+  url = f"{{\field{\*\fldinst{HYPERLINK https://www.google.com/maps/search/\{formatted_city\} }}{\fldrslt{https://www.google.com/maps/search/\{formatted_city\}\ul0\cf0}}}}\f0\fs28 "\par
+  response = requests.get(url)\par
+# Parse the HTML response using BeautifulSoup\par
+  soup = BeautifulSoup(response.text, "html.parser")\par
+ # Find the element containing the coordinates\par
+  coordinates_element = soup.find("meta", itemprop="image")\par
+ # Extract the coordinates from the element's content attribute\par
+  coordinates = coordinates_element["content"].split(";")[1].strip().split(",")\par
+# Return the latitude and longitude as a tuple\par
+  return float(coordinates[0]), float(coordinates[1])\par
+# Example usage\par
+city = input("Enter a city name: ")\par
+latitude, longitude = get_coordinates(city)\par
+print(f"The coordinates of \{city\} are: Latitude: \{latitude\}, Longitude: \{longitude\}")\par
+6. Write a program to scrap all the available details of best gaming laptops from digi - \par
+\par
+\par
+Answer - # Open the website\par
+driver.get('{{\field{\*\fldinst{HYPERLINK https://www.digit.in/ }}{\fldrslt{https://www.digit.in/\ul0\cf0}}}}\f0\fs28 ')\par
+\par
+# Search for gaming laptops\par
+search_bar = driver.find_element_by_id('searchDiv')\par
+search_bar.send_keys('gaming laptops')\par
+search_bar.submit()\par
+\par
+# Wait for the search results to load\par
+time.sleep(2)\par
+\par
+# Scrape the details\par
+laptop_elements = driver.find_elements_by_class_name('searchPage')\par
+laptop_details = []\par
+\par
+for laptop in laptop_elements:\par
+  name = laptop.find_element_by_class_name('searchProductTitle').text\par
+  price = laptop.find_element_by_class_name('searchPrice').text\par
+  specifications = laptop.find_element_by_class_name('searchSpec').text\par
+  \par
+  laptop_details.append(\{\par
+  'Name': name,\par
+  'Price': price,\par
+  'Specifications': specifications\par
+  \})\par
+\par
+# Print the scraped details\par
+for laptop in laptop_details:\par
+  print(laptop)\par
+\par
+# Close the WebDriver\par
+driver.quit()\par
+7. Write a python program to scrape the details for all billionaires from {{\field{\*\fldinst{HYPERLINK www.forbes.com }}{\fldrslt{www.forbes.com\ul0\cf0}}}}\f0\fs28 . Details to be scrapped:\par
+\ldblquote Rank\rdblquote , \ldblquote Name\rdblquote , \ldblquote Net worth\rdblquote , \ldblquote Age\rdblquote , \ldblquote Citizenship\rdblquote , \ldblquote Source\rdblquote , \ldblquote Industry\rdblquote . \par
+# Send a GET request to the Forbes website\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.forbes.com/billionaires/ }}{\fldrslt{https://www.forbes.com/billionaires/\ul0\cf0}}}}\f0\fs28 "\par
+response = requests.get(url)\par
+\par
+Answer - # Create a BeautifulSoup object to parse the HTML content\par
+soup = BeautifulSoup(response.content, "html.parser")\par
+\par
+# Find the table containing the billionaire details\par
+table = soup.find("table", class_="table")\par
+\par
+# Find all the rows in the table\par
+rows = table.find_all("tr")\par
+\par
+# Iterate over each row and extract the required details\par
+for row in rows:\par
+  # Find all the columns in the row\par
+  columns = row.find_all("td")\par
+  \par
+  # Extract the required details from the columns\par
+  rank = columns[0].text.strip()\par
+  name = columns[1].text.strip()\par
+  net_worth = columns[2].text.strip()\par
+  age = columns[3].text.strip()\par
+  citizenship = columns[4].text.strip()\par
+  source = columns[5].text.strip()\par
+  industry = columns[6].text.strip()\par
+  \par
+  # Print the extracted details\par
+  print("Rank:", rank)\par
+  print("Name:", name)\par
+  print("Net Worth:", net_worth)\par
+  print("Age:", age)\par
+  print("Citizenship:", citizenship)\par
+  print("Source:", source)\par
+  print("Industry:", industry)\par
+  print()\par
+8. Write a program to extract at least 500 Comments, Comment upvote and time when comment was posted\par
+from any YouTube Video.\par
+Answer - # Set up the WebDriver\par
+driver = webdriver.Chrome('path_to_chromedriver')  # Replace with the path to your WebDriver executable\par
+\par
+# Open the YouTube video\par
+video_url = '{{\field{\*\fldinst{HYPERLINK https://www.youtube.com/watch?v=your_video_id }}{\fldrslt{https://www.youtube.com/watch?v=your_video_id\ul0\cf0}}}}\f0\fs28 '  # Replace with the URL of the YouTube video\par
+driver.get(video_url)\par
+\par
+# Scroll to load comments\par
+scroll_pause_time = 2  # Adjust the pause time as needed\par
+scrolls = 10  # Adjust the number of scrolls as needed\par
+\par
+for _ in range(scrolls):\par
+  driver.execute_script("window.scrollTo(0, document.documentElement.scrollHeight);")\par
+  time.sleep(scroll_pause_time)\par
+\par
+# Extract comments, upvotes, and time\par
+comments = driver.find_elements_by_xpath('//yt-formatted-string[@id="content-text"]')\par
+upvotes = driver.find_elements_by_xpath('//span[@id="vote-count-middle"]')\par
+times = driver.find_elements_by_xpath('//a[@class="yt-simple-endpoint style-scope yt-formatted-string"]')\par
+\par
+# Store the extracted data\par
+extracted_data = []\par
+for comment, upvote, time in zip(comments, upvotes, times):\par
+  extracted_data.append(\{\par
+  'comment': comment.text,\par
+  'upvote': upvote.text,\par
+  'time': time.text\par
+  \})\par
+\par
+# Close the WebDriver\par
+driver.quit()\par
+\par
+# Print the extracted data\par
+for data in extracted_data:\par
+  print(data)\par
+9. Write a python program to scrape a data for all available Hostels from {{\field{\*\fldinst{HYPERLINK https://www.hostelworld.com/ }}{\fldrslt{https://www.hostelworld.com/\ul0\cf0}}}}\f0\fs28  in\par
+\ldblquote London\rdblquote  location. You have to scrape hostel name, distance from city centre, ratings, total reviews, overall\par
+reviews, privates from price, dorms from price, facilities and property description.\par
+# Send a GET request to the website\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.hostelworld.com/hostels/London }}{\fldrslt{https://www.hostelworld.com/hostels/London\ul0\cf0}}}}\f0\fs28 "\par
+response = requests.get(url)\par
+Answer - # Create a BeautifulSoup object to parse the HTML content\par
+soup = BeautifulSoup(response.content, "html.parser")\par
+# Find all the hostel containers\par
+hostels = soup.find_all("div", class_="fabresult")\par
+# Iterate over each hostel container and extract the required information\par
+for hostel in hostels:\par
+  # Extract hostel name\par
+  name = hostel.find("h2", class_="fabresult-title").text.strip().\par
+\par
+\par
+}
+ 
