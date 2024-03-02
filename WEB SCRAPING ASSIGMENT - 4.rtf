@@ -1,0 +1,244 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\qc\ul\f0\fs48\lang9 WEB SCRAPING \f1\endash  ASSIGNMENT 4\par
+
+\pard\sa200\sl276\slmult1\par
+\ulnone\fs28 1. Scrape the details of most viewed videos on YouTube from Wikipedia. Url\par
+= {{\field{\*\fldinst{HYPERLINK https://en.wikipedia.org/wiki/List_of_most-viewed_YouTube_videos }}{\fldrslt{https://en.wikipedia.org/wiki/List_of_most-viewed_YouTube_videos\ul0\cf0}}}}\f1\fs28  You need to find following details:\par
+: A)\par
+Rank\par
+B) Name\par
+C) Artist\par
+D) Upload date\par
+E) Views \par
+2. Scrape the details team India\rquote s international fixtures from bcci.tv.\par
+Url = {{\field{\*\fldinst{HYPERLINK https://www.bcci.tv/ }}{\fldrslt{https://www.bcci.tv/\ul0\cf0}}}}\f1\fs28\par
+A) Series\par
+B) Place\par
+C) Date\par
+D) Time\par
+\f0\lang1033 Answer - \f1\lang9 Import the necessary libraries:\par
+import requests\par
+from bs4 import BeautifulSoup\par
+Send a GET request to the bcci.tv homepage and parse the HTML content:\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.bcci.tv/ }}{\fldrslt{https://www.bcci.tv/\ul0\cf0}}}}\f1\fs28 "\par
+response = requests.get(url)\par
+soup = BeautifulSoup(response.content, "html.parser")\par
+Find the link to the international fixtures page:\par
+fixtures_link = soup.find("a", text="International Fixtures")["href"]\par
+Send another GET request to the international fixtures page and parse the HTML content:\par
+fixtures_url = url + fixtures_link\par
+fixtures_response = requests.get(fixtures_url)\par
+fixtures_soup = BeautifulSoup(fixtures_response.content, "html.parser")\par
+3. Scrape the details of State-wise GDP of India from statisticstime.com.\par
+Url = {{\field{\*\fldinst{HYPERLINK http://statisticstimes.com/ }}{\fldrslt{http://statisticstimes.com/\ul0\cf0}}}}\f1\fs28\par
+You have to find following details:\par
+A) Rank\par
+B) State\par
+C) GSDP(18-19)- at current prices\par
+D) GSDP(19-20)- at current prices\par
+E) Share(18-19)\par
+F) GDP($ billion) \par
+\f0\lang1033 Answer - 31\par
+33\par
+2018-19\par
+13,992,914\par
+12,733,798\par
+13,840,474\par
+12,226,019\par
+18,899,668\par
+17,175,128\par
+18,697,344\par
+16,713,05\par
+2019-20\par
+14,534,641\par
+13,236,100\par
+14,392,900\par
+12,661,722\par
+20,103,593\par
+18,381,117\par
+19,910,479\par
+17,746,868\par
+741.93 USD Billion\par
+4. Scrape the details of trending repositories on Github.com.\par
+Url = {{\field{\*\fldinst{HYPERLINK https://github.com }}{\fldrslt{https://github.com\ul0\cf0}}}}\f0\fs28\par
+A) Repository title\par
+B) Repository description\par
+C) Contributors count\par
+D) Language used \par
+Answer - import requests\par
+from bs4 import BeautifulSoup\par
+\par
+url = "{{\field{\*\fldinst{HYPERLINK https://github.com/ }}{\fldrslt{https://github.com/\ul0\cf0}}}}\f0\fs28 "\par
+\par
+# Send a GET request to the URL\par
+response = requests.get(url)\par
+\par
+# Find the container that holds the trending repositories\par
+trending_repos = soup.find_all('article', class_='Box-row')\par
+\par
+# Iterate over each repository\par
+for repo in trending_repos:\par
+  # Find the repository title\par
+  title = repo.find('h1', class_='h3').text.strip()\par
+\par
+  # Find the repository description\par
+  description = repo.find('p', class_='col-9').text.strip()\par
+\par
+  # Find the contributors count\par
+  contributors = repo.find('a', class_='muted-link').text.strip()\par
+\par
+  # Find the language used\par
+  language = repo.find('span', itemprop='programmingLanguage').text.strip()\par
+5. Scrape the details of top 100 songs on billiboard.com. Url = https:/www.billboard.com/ You have to find the\par
+following details: \par
+A) Song name\par
+B) Artist name\par
+C) Last week rank\par
+D) Peak rank\par
+E) Weeks on board\par
+Answer - import requests\par
+from bs4 import BeautifulSoup\par
+\par
+r = requests.get('{{\field{\*\fldinst{HYPERLINK https://www.billboard.com/charts/hot-100/ }}{\fldrslt{https://www.billboard.com/charts/hot-100/\ul0\cf0}}}}\f0\fs28 ')\par
+soup = BeautifulSoup(r.content, 'html.parser')\par
+result = soup.find_all('div', class_='o-chart-results-list-row-container')\par
+for res in result:\par
+    songName = res.find('h3').text.strip()\par
+    artist = res.find('h3').find_next('span').text.strip()\par
+    print("song: "+songName)\par
+    print("artist: "+ str(artist))\par
+6. Scrape the details of Highest selling novels.\par
+A) Book name\par
+B) Author name\par
+C) Volumes sold\par
+D) Publisher\par
+E) Genre\par
+Answer - import requests\par
+from bs4 import BeautifulSoup\par
+\par
+# Send a GET request to the URL\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.theguardian.com/news/datablog/2012/aug/09/best-selling-books-all-time-fifty-shades-grey-compare }}{\fldrslt{https://www.theguardian.com/news/datablog/2012/aug/09/best-selling-books-all-time-fifty-shades-grey-compare\ul0\cf0}}}}\f0\fs28 "\par
+response = requests.get(url)\par
+\par
+# Parse the HTML content\par
+soup = BeautifulSoup(response.content, 'html.parser')\par
+\par
+# Find the relevant HTML elements and extract the data\par
+novels = []\par
+table = soup.find('table')\par
+rows = table.find_all('tr')[1:]  # Exclude the header row\par
+\par
+for row in rows:\par
+  columns = row.find_all('td')\par
+  book_name = columns[1].text.strip()\par
+  author_name = columns[2].text.strip()\par
+  volumes_sold = columns[3].text.strip()\par
+  publisher = columns[4].text.strip()\par
+  genre = columns[5].text.strip()\par
+\par
+  novel = \{\par
+  'Book Name': book_name,\par
+  'Author Name': author_name,\par
+  'Volumes Sold': volumes_sold,\par
+  'Publisher': publisher,\par
+  'Genre': genre\par
+7. Scrape the details most watched tv series of all time from imdb.com.\par
+Url = {{\field{\*\fldinst{HYPERLINK https://www.imdb.com/list/ls095964455/ }}{\fldrslt{https://www.imdb.com/list/ls095964455/\ul0\cf0}}}}\f0\fs28  You have\par
+to find the following details: \par
+A) Name\par
+B) Year span\par
+C) Genre\par
+D) Run time\par
+E) Ratings\par
+F) Votes \par
+Answer - from bs4 import BeautifulSoup\par
+\par
+url = "{{\field{\*\fldinst{HYPERLINK https://www.imdb.com/list/ls095964455/ }}{\fldrslt{https://www.imdb.com/list/ls095964455/\ul0\cf0}}}}\f0\fs28 "\par
+response = requests.get(url)\par
+soup = BeautifulSoup(response.content, "html.parser")\par
+\par
+series_list = soup.find_all("div", class_="lister-item-content")\par
+\par
+for series in series_list:\par
+  name = series.find("h3").find("a").text.strip()\par
+  year_span = series.find("span", class_="lister-item-year").text.strip("()")\par
+\par
+  genre = series.find("span", class_="genre").text.strip()\par
+  runtime = series.find("span", class_="runtime").text.strip()\par
+  rating = series.find("span", class_="ipl-rating-star__rating").text.strip()\par
+  votes = series.find("span", attrs=\{"name": "nv"\}).text.strip()\par
+\par
+  print("Name:", name)\par
+  print("Year Span:", year_span)\par
+  print("Genre:", genre)\par
+  print("Run Time:", runtime)\par
+  print("Ratings:", rating)\par
+  print("Votes:", votes)\par
+  print()\par
+8. Details of Datasets from UCI machine learning repositories.\par
+Url = {{\field{\*\fldinst{HYPERLINK https://archive.ics.uci.edu/ }}{\fldrslt{https://archive.ics.uci.edu/\ul0\cf0}}}}\f0\fs28  You\par
+have to find the following details:\par
+A) Dataset name\par
+B) Data type\par
+C) Task\par
+D) Attribute type\par
+E) No of instances\par
+F) No of attribute G) Year\par
+\par
+Answer - from bs4 import BeautifulSoup\par
+\par
+# Send a GET request to the UCI machine learning repositories website\par
+url = "{{\field{\*\fldinst{HYPERLINK https://archive.ics.uci.edu/ }}{\fldrslt{https://archive.ics.uci.edu/\ul0\cf0}}}}\f0\fs28 "\par
+response = requests.get(url)\par
+\par
+# Parse the HTML content using BeautifulSoup\par
+soup = BeautifulSoup(response.content, "html.parser")\par
+\par
+# Find the link to the "Show All Dataset" page\par
+show_all_link = soup.find("a", href="ml/datasets.php")\par
+\par
+# Construct the URL for the "Show All Dataset" page\par
+show_all_url = url + show_all_link["href"]\par
+\par
+# Send another GET request to the "Show All Dataset" page\par
+show_all_response = requests.get(show_all_url)\par
+\par
+# Parse the HTML content of the "Show All Dataset" page\par
+show_all_soup = BeautifulSoup(show_all_response.content, "html.parser")\par
+\par
+# Find the table containing the dataset details\par
+dataset_table = show_all_soup.find("table", class_="table")\par
+\par
+# Extract the details from the table rows\par
+dataset_details = []\par
+for row in dataset_table.find_all("tr")[1:]:\par
+  columns = row.find_all("td")\par
+  dataset_name = columns[0].text.strip()\par
+  data_type = columns[1].text.strip()\par
+  task = columns[2].text.strip()\par
+  attribute_type = columns[3].text.strip()\par
+  num_instances = columns[4].text.strip()\par
+  num_attributes = columns[5].text.strip()\par
+  year = columns[6].text.strip()\par
+  dataset_details.append((dataset_name, data_type, task, attribute_type, num_instances, num_attributes, year))\par
+\par
+# Print the dataset details\par
+for dataset in dataset_details:\par
+  print("Dataset Name:", dataset[0])\par
+  print("Data Type:", dataset[1])\par
+  print("Task:", dataset[2])\par
+  print("Attribute Type:", dataset[3])\par
+  print("No of Instances:", dataset[4])\par
+  print("No of Attributes:", dataset[5])\par
+  print("Year:", dataset[6])\par
+  print()\par
+\par
+  \par
+\par
+\par
+  \f1\lang9\par
+ \f0\par
+}
+ 
