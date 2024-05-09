@@ -1,0 +1,271 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\froman\fprq2\fcharset0 Times New Roman;}{\f2\fnil\fcharset0 Calibri;}{\f3\fswiss\fprq2\fcharset0 Calibri;}{\f4\froman\fprq2\fcharset2 Symbol;}}
+{\colortbl ;\red18\green54\blue84;\red0\green0\blue255;\red0\green138\blue188;\red0\green0\blue0;\red41\green41\blue41;\red34\green34\blue34;\red51\green51\blue51;\red255\green255\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\cbpat8\widctlpar\sa240\qc\cf1\b\f0\fs36 Census Income\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\cf0\b0\fs22 This data was extracted from the\~{\f1\fs24{\field{\*\fldinst{HYPERLINK "http://www.census.gov/en.html"}}{\fldrslt{\ul\cf2\cf3\ul\f0\fs22 1994 Census bureau database}}}}\f0\fs22\~by Ronny Kohavi and Barry Becker (Data Mining and Visualization, Silicon Graphics). A set of reasonably clean records was extracted using the following conditions: ((AAGE>16) && (AGI>100) && (AFNLWGT>1) && (HRSWK>0)).\~\b\i The prediction task is to determine whether a person makes over $50K a year.\b0\par
+
+\pard\cbpat8\keep\keepn\widctlpar\s2\sb480\sa240\sl252\slmult1\cf4\kerning2\b\i0\fs24 Description of fnlwgt (final weight)\par
+
+\pard\cbpat8\widctlpar\sb158\sa158\cf0\kerning0\b0\fs22 The weights on the Current Population Survey (CPS) files are controlled to independent estimates of the civilian non-institutional population of the US. These are prepared monthly for us by Population Division here at the Census Bureau. We use 3 sets of controls. These are:\par
+
+\pard\cbpat8 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\widctlpar\fi-360\li720 A single cell estimate of the population 16+ for each state.\par
+{\pntext\f0 2.\tab}Controls for Hispanic Origin by age and sex.\par
+{\pntext\f0 3.\tab}Controls by Race, age and sex.\par
+
+\pard\cbpat8\widctlpar\sb158\sa158 We use all three sets of controls in our weighting program and "rake" through them 6 times so that by the end we come back to all the controls we used. The term estimate refers to population totals derived from CPS by creating "weighted tallies" of any specified socio-economic characteristics of the population. People with similar demographic characteristics should have similar weights. There is one important caveat to remember about this statement. That is that since the CPS sample is actually a collection of 51 state samples, each with its own probability of selection, the statement only applies within state.\par
+
+\pard\sa200\sl276\slmult1\qc\f2\lang9\par
+
+\pard\sa200\sl276\slmult1 whether a person makes over $50K a year.\par
+\par
+ANSWER - Description of fnlwgt (final weight)\par
+The weights on the Current Population Survey (CPS) files are controlled to independent estimates of the civilian noninstitutional population of the US. These are prepared monthly for us by Population Division here at the Census Bureau. We use 3 sets of controls. These are:\par
+\par
+A single cell estimate of the population 16+ for each state.\par
+\par
+Controls for Hispanic Origin by age and sex.\par
+\par
+Controls by Race, age and sex.\par
+\par
+We use all three sets of controls in our weighting program and "rake" through them 6 times so that by the end we come back to all the controls we used. The term estimate refers to population totals derived from CPS by creating "weighted tallies" of any specified socio-economic characteristics of the population. People with similar demographic characteristics should have similar weights. There is one important caveat to remember about this statement. That is that since the CPS sample is actually a collection of 51 state samples, each with its own probability of selection, the statement only applies within state.\par
+\par
+Relevant papers\par
+Ron Kohavi, "Scaling Up the Accuracy of Naive-Bayes Classifiers: a Decision-Tree Hybrid",\par
+\par
+
+\pard\widctlpar\sa160\sl252\slmult1\kerning2\f3\lang1033\par
+\par
+
+\pard\cbpat8\widctlpar\sa240\qc\cf1\kerning0\b\f0\fs36 Rainfall Weather Forecasting\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\sa160\cf5\fs22 Weather forecasting\b0\~is the application of science and technology to predict the\~\b conditions of the atmosphere\b0\~for a given\~\b location\~\b0 and\~\b time\b0 .\~\b Weather forecasts\~\b0 are made by collecting\~\b quantitative data\~\b0 about the\~\b current state of the atmosphere\b0\~at a given place and using meteorology to project how the atmosphere will change.\cf4\par
+
+\pard\cbpat8\widctlpar\cf6 Rain Dataset is to predict whether or not it will rain tomorrow. The Dataset contains about 10 years of daily weather observations of different locations in Australia. \b Here, predict two things:\cf4\b0\par
+\~\par
+\cf6\b 1. Problem Statement:\~\cf4\b0\par
+\cf6 a) Design a predictive model with the use of machine learning algorithms to forecast \b whether or not it will rain tomorrow\b0 .\cf4\par
+
+\pard\cbpat8\widctlpar\sa160 b)\~ \cf6 Design a predictive model with the use of machine learning algorithms to \b predict how much rainfall could be there\b0 .\cf4\par
+
+\pard\widctlpar  \line\cf0\par
+
+\pard\cbpat8\widctlpar\cf6\b Dataset Description:\cf4\b0\par
+\cf6 Number of columns:\~\b 23\cf4\b0\par
+
+\pard\widctlpar\line\cf0\par
+
+\pard\cbpat8\widctlpar\sa160\cf4 Date\~ - The date of observation\par
+Location\~ -The common name of the location of the weather station\par
+MinTemp\~ -The minimum temperature in degrees celsius\par
+MaxTemp -The maximum temperature in degrees celsius\par
+Rainfall\~ -The amount of rainfall recorded for the day in mm\par
+Evaporation\~ -The so-called Class A pan evaporation (mm) in the 24 hours to 9am\par
+Sunshine\~ -The number of hours of bright sunshine in the day.\par
+WindGustDi r- The direction of the strongest wind gust in the 24 hours to midnight\par
+WindGustSpeed -The speed (km/h) of the strongest wind gust in the 24 hours to midnight\par
+WindDir9am -Direction of the wind at 9am\par
+WindDir3pm -Direction of the wind at 3pm\par
+WindSpeed9am -Wind speed (km/hr) averaged over 10 minutes prior to 9am\par
+WindSpeed3pm -Wind speed (km/hr) averaged over 10 minutes prior to 3pm\par
+Humidity9am -Humidity (percent) at 9am\par
+Humidity3pm -Humidity (percent) at 3pm\par
+Pressure9am -Atmospheric pressure (hpa) reduced to mean sea level at 9am\par
+Pressure3pm -Atmospheric pressure (hpa) reduced to mean sea level at 3pm\par
+Cloud9am - Fraction of sky obscured by cloud at 9am.\~\par
+Cloud3pm -Fraction of sky obscured by cloud\~\par
+Temp9am-Temperature (degrees C) at 9am\par
+Temp3pm -Temperature (degrees C) at 3pm\par
+RainToday -Boolean: 1 if precipitation (mm) in the 24 hours to 9am exceeds 1mm, otherwise 0\par
+RainTomorrow -The amount of next day rain in mm. Used to create response variable . A kind of measure of the "risk".\par
+Context\par
+Weather forecasting is the application of science and technology to predict the conditions of the atmosphere for a given location and time. People have attempted to predict the weather informally for millennia and formally since the 19th century. Weather forecasts are made by collecting quantitative data about the current state of the atmosphere, land, and ocean and using meteorology to project how the atmosphere will change at a given place. Once calculated manually based mainly upon changes in barometric pressure, current weather conditions, and sky condition or cloud cover, weather forecasting now relies on computer-based models that take many atmospheric factors into account. Human input is still required to pick the best possible forecast model to base the forecast upon, which involves pattern recognition skills, teleconnections, knowledge of model performance, and knowledge of model biases. The inaccuracy of forecasting is due to the chaotic nature of the atmosphere, the massive computational power required to solve the equations that describe the atmosphere, the land, and the ocean, the error involved in measuring the initial conditions, and an incomplete understanding of atmospheric and related processes. Hence, forecasts become less accurate as the difference between current time and the time for which the forecast is being made (the range of the forecast) increases. The use of ensembles and model consensus help narrow the error and provide confidence level in the forecast. There is a vast variety of end uses to weather forecasts. Weather warnings are important forecasts because they are used to protect life and property. Forecasts based on temperature and precipitation are important to agriculture, and\par
+Exploratory Data Analysis\'b6\par
+Aim :\par
+Understand the data ("A small step forward is better than a big one backwards")\par
+Begin to develop a modelling strategy\par
+Features\par
+- station - used weather station number: 1 to 25\par
+- Date - Present day: yyyy-mm-dd ('2013-06-30' to '2017-08-30')\par
+- Present_Tmax - Maximum air temperature between 0 and 21 h on the present day (\'c2\'b0C): 20 to 37.6\par
+ Present_Tmin - Minimum air temperature between 0 and 21 h on the present day (\'c2\'b0C): 11.3 to 29.9\par
+- LDAPS_RHmin - LDAPS model forecast of next-day minimum relative humidity (%): 19.8 to 98.5\par
+- LDAPS_RHmax - LDAPS model forecast of next-day maximum relative humidity (%): 58.9 to 100\par
+- LDAPSTmaxlapse - LDAPS model forecast of next-day maximum air temperature applied lapse rate (\'c2\'b0C): 17.6 to 38.5\par
+- LDAPSTminlapse - LDAPS model forecast of next-day minimum air temperature applied lapse rate (\'c2\'b0C): 14.3 to 29.6\par
+- LDAPS_WS - LDAPS model forecast of next-day average wind speed (m/s): 2.9 to 21.9\par
+- LDAPS_LH - LDAPS model forecast of next-day average latent heat flux (W/m2): -13.6 to 213.4\par
+- LDAPS_CC1 - LDAPS model forecast of next-day 1st 6-hour split average cloud cover (0-5 h) (%): 0 to 0.97\par
+- LDAPS_CC2 - LDAPS model forecast of next-day 2nd 6-hour split average cloud cover (6-11 h) (%): 0 to 0.97\par
+- LDAPS_CC3 - LDAPS model forecast of next-day 3rd 6-hour split average cloud cover (12-17 h) (%): 0 to 0.98\par
+- LDAPS_CC4 - LDAPS model forecast of next-day 4th 6-hour split average \par
+Base Chacklist\'b6\par
+Shape analysis :\par
+target(s) : Next_Tmax & Next_Tmin\par
+rows and columns : 7752 , 25\par
+features types : qualitatives : 1 (la date du relev\'e9) , quantitatives : 24 (tout le reste)\par
+NaN analysis :\par
+vraiment pas beaucoup de NaN (moiti\'e9 des variables = 1% de NaN)\par
+Features analysis :\par
+Target visualization :\par
+Next_Tmax = 30.27\'b0 +/- 3.12\'b0\par
+Next_Tmin = 22.930 +/- 2.49\'b0\par
+\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning2\f3\par
+
+\pard\cbpat8\widctlpar\sa240\qc\cf1\kerning0\b\f0\fs36 Insurance Claim Fraud Detection\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\sb240\cf7\b0\fs22 Insurance fraud is a huge problem in the industry. It's difficult to identify fraud claims. Machine Learning is in a unique position to help the Auto Insurance industry with this problem.\cf4\par
+\cf7 In this project, you are provided a dataset which has the details of the insurance policy along with the customer details. It also has the details of the accident on the basis of which the claims have been made.\~\cf4\par
+
+\pard\cbpat8\widctlpar\cf7 In this example, you will be working with some auto insurance data to demonstrate how you can create a predictive model that predicts if an insurance claim is fraudulent or not.\~\cf4\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning2\f3\par
+
+\pard\cbpat8\widctlpar\sa240\kerning0\b\f0\fs28 Independent Variables\par
+
+\pard\cbpat8 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\widctlpar\fi-360\li720\sa240\b0\fs22 months_as_customer: Number of months of patronage\par
+{\pntext\f0 2.\tab}age: the length of time a customer has lived or a thing has existed\par
+{\pntext\f0 3.\tab}policy_number: It is a unique id given to the customer, to track the subscription status and other details of customer\par
+{\pntext\f0 4.\tab}policy_bind_date:date which document that is given to customer after we accept your proposal for insurance\par
+{\pntext\f0 5.\tab}policy_state: This identifies who is the insured, what risks or property are covered, the policy limits, and the policy period\par
+{\pntext\f0 6.\tab}policy_csl: is basically Combined Single Limit\par
+{\pntext\f0 7.\tab}policy_deductable: the amount of money that a customer is responsible for paying toward an insured loss\par
+{\pntext\f0 8.\tab}policy_annual_premium: This means the amount of Regular Premium payable by the Policyholder in a Policy Year\par
+{\pntext\f0 9.\tab}umbrella_limit: This means extra insurance that provides protection beyond existing limits and coverages of other policies\par
+{\pntext\f0 10.\tab}insured_zip: It is the zip code where the insurance was made\par
+{\pntext\f0 11.\tab}insured_sex: This refres to either of the two main categories (male and female) into which customer are divided on the basis of their reproductive functions\par
+{\pntext\f0 12.\tab}insured_education_level: This refers to the Level of education of the customer\par
+{\pntext\f0 13.\tab}insured_occupation: This refers Occupation of the customer\par
+{\pntext\f0 14.\tab}insured_hobbies: This refers to an activity done regularly by customer in his/her leisure time for pleasure.\par
+{\pntext\f0 15.\tab}insured_relationship: This whether customer is: single; or. married; or. in a de facto relationship (that is, living together but not married); or. in a civil partnership\par
+{\pntext\f0 16.\tab}capital-gains: This refers to profit accrued due to insurance premium\par
+{\pntext\f0 17.\tab}capital-loss: This refers to the losses incurred due to insurance claims\par
+{\pntext\f0 18.\tab}incident_date: This refers to the date which claims where made by customers\par
+{\pntext\f0 19.\tab}incident_type: This refers to the type of claim/vehicle damage made by customer\par
+{\pntext\f0 20.\tab}collision_type: This refers to the area of damage on the vehicle\par
+{\pntext\f0 21.\tab}incident_severity: This refers to the extent/level of damage\par
+{\pntext\f0 22.\tab}authorities_contacted: This refers to the government agencies that were contacted after damage\par
+{\pntext\f0 23.\tab}incident_state: This refers to the state at which the accident happened\par
+{\pntext\f0 24.\tab}incident_city: This refers to the city at which the accident happened\par
+{\pntext\f0 25.\tab}1ncident_location: This refers to the location at which the accident happened\par
+{\pntext\f0 26.\tab}incident_hour_of_the_day: The period of the day which accident took place\par
+{\pntext\f0 27.\tab}number_of_vehicles_involved: This refers to number of vehicles involved the accident\par
+{\pntext\f0 28.\tab}property_damage: This refers to whether property was damaged or not\par
+{\pntext\f0 29.\tab}bodily_injuries: This refers to injuries sustained\par
+{\pntext\f0 30.\tab}witnesses: This refers to the number of witnesses involved\par
+{\pntext\f0 31.\tab}police_report_available: This refers to whether the report on damage was documented or not\par
+{\pntext\f0 32.\tab}total_claim_amount: This refers to the financial implications involved in claims\par
+{\pntext\f0 33.\tab}injury_claim: This refers to physical injuries sustained\par
+{\pntext\f0 34.\tab}property_claim: This refers to property damages during incident\par
+{\pntext\f0 35.\tab}vehicle_claim: This refers to property damages during incident\par
+{\pntext\f0 36.\tab}auto_make: This refers to the make of the vehicle\par
+{\pntext\f0 37.\tab}auto_model: This refers to the model of the vehicle\par
+{\pntext\f0 38.\tab}auto_year: This refers to the year which the vehicle was manufactured\par
+{\pntext\f0 39.\tab}_c39:\par
+
+\pard\cbpat8 
+{\pntext\f0 40.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart40\pndec{\pntxta.}}
+\widctlpar\fi-360\li720\sb100\sa100 fraud_reported\par
+
+\pard\cbpat8\widctlpar\sb100\sa100 answer - raud is one of the largest and most well-known problems that insurers face. This article focuses on claim data of a car insurance company. Fraudulent claims can be highly expensive for each insurer. Therefore, it is important to know which claims are correct and which are not. It is not doable for insurance companies to check all claims personally since this will cost simply too much time and money. In this article, we will take advantage of the largest asset which insurers have in the fight against fraud: Data. We employ various attributes about the claims, insured people and other circumstances which are included in the data by the insurer. Separating different groups of claims and the corresponding rates of fraud within those groups provide new insights.\par
+\par
+\par
+
+\pard\widctlpar\sa160\sl252\slmult1\kerning2\f3\par
+
+\pard\cbpat8\widctlpar\sa240\qc\cf1\kerning0\b\f0\fs36 Zomato Restaurant\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\cf4\b0\fs22 Zomato Data Analysis is one of the most useful analysis for foodies who want to taste the best\par
+cuisines of every part of the world which lies in their budget. This analysis is also for those who\par
+want to find the value for money restaurants in various parts of the country for the cuisines.\par
+Additionally, this analysis caters the needs of people who are striving to get the best cuisine of\par
+the country and which locality of that country serves that cuisines with maximum number of\par
+restaurants.\par
+\par
+\b Data Storage:\b0\par
+This problem statement contains two datasets-\~\b Zomato.csv\b0\~and\~\b country_code.csv.\b0\par
+\b Country_code.csv\b0\~contains two variables:\par
+\f4\'b7\f0  Country code\par
+\f4\'b7\f0  Country name\par
+\par
+The collected data has been stored in the Comma Separated Value file\~\b Zomato.csv\b0 . Each\par
+restaurant in the dataset is uniquely identified by its Restaurant Id. Every Restaurant contains the following variables:\par
+\bullet  Restaurant Id: Unique id of every restaurant across various cities of the world\par
+\bullet  Restaurant Name: Name of the restaurant\par
+\bullet  Country Code: Country in which restaurant is located\par
+\bullet  City: City in which restaurant is located\par
+\bullet  Address: Address of the restaurant\par
+\bullet  Locality: Location in the city\par
+\bullet  Locality Verbose: Detailed description of the locality\par
+\bullet  Longitude: Longitude coordinate of the restaurant&#39;s location\par
+\bullet  Latitude: Latitude coordinate of the restaurant&#39;s location\par
+\bullet  Cuisines: Cuisines offered by the restaurant\par
+\bullet  Average Cost for two: Cost for two people in different currencies \par
+\bullet  Currency: Currency of the country\par
+\bullet  Has Table booking: yes/no\par
+\bullet  Has Online delivery: yes/ no\par
+\bullet  Is delivering: yes/ no\par
+\bullet  Switch to order menu: yes/no\par
+\bullet  Price range: range of price of food\par
+\bullet  Aggregate Rating: Average rating out of 5\par
+\bullet  Rating color: depending upon the average rating color\par
+\bullet  Rating text: text on the basis of rating of rating\par
+\bullet  Votes: Number of ratings casted by people\par
+\par
+\b Problem statement : In this dataset predict 2 things \endash\b0\par
+1) Average Cost for two\par
+
+\pard\cbpat8\widctlpar\sb100\sa100 2) Price range\cf0\par
+\par
+Furthermore, we use machine learning to predict which claims are likely to be fraudulent. This information can narrow down the list of claims that need a further check. It enables an insurer to detect more fraudulent claims.\par
+\par
+Problem Definition\par
+The goal of this project is to build a model that can detect auto insurance fraud. The challenge behind fraud detection in machine learning is that frauds are far less common as compared to legit insurance claims.\par
+\par
+Insurance fraud detection is a challenging problem, given the variety of fraud patterns and relatively small ratio of known frauds in typical samples. While building detection models, the savings from loss prevention needs to be balanced with the cost of false alerts. Machine learning techniques allow for improving predictive accuracy, enabling loss control units to achieve higher coverage with low false positive rates.\par
+\par
+Insurance frauds cover the range of improper activities which an individual may commit in order to achieve a favourable outcome from the insurance company. This could range from staging the incident, misrepresenting the situation including the relevant actors and the cause of incident and finally the extent of damage caused.\par
+\par
+Data Analysis\par
+In this project, we have a dataset which has the details of the insurance policy along with the customer details. It also has the details of the accident on the basis of which the claims have been made.\par
+\par
+The given dataset contains 1000 rows and 40 columns. The column names like policy number, policy bind date, policy annual premium, incident severity, incident location, auto model, etc.\par
+\par
+The obvious con of this data set is the small sample size. However, there are still many companies who do not have big data sets. The ability to work with what is available is crucial for any company looking to transition into leveraging data science.\par
+\par
+\par
+Description of the data\par
+Compared to a company that waits for the day when it has a huge data set, the company that started with a small data set and worked on it will more likely succeed earlier in its data science journey and reap its rewards.\par
+\par
+There are some variables which contain the null values character \lquote ?\rquote . The number of null values present is given below.\par
+\par
+\par
+Unique values\par
+Exploratory data analysis\par
+Dependent variable: Exploratory data analysis was conducted starting with the dependent variable, Fraud_reported. There were 247 frauds and 753 non-frauds. 24.7% of the data were frauds while 75.3% were non-fraudulent claims.\par
+\par
+Reported frauds\par
+Correlations among variables: Heatmap was plotted for variables with at least 0.3 Pearson\rquote s correlation coefficient, including the DV. Month as customer and age had a correlation of 0.92. Probably because drivers buy auto insurance when they own a car and this time measure only increases with age. Apart from that, there don\rquote t seem to be many correlations in the data. There don\rquote t seem to be multicollinearity problems except maybe that all the claims are all correlated, and somehow total claims have accounted for them. However, the other claims provide some granularity that will not otherwise be captured by total claims. Thus, these variables were kept.\par
+Visualizing variables: The value of fraud reported differs across hobbies of the customer. It seems like chess players and crossfitters have higher tendencies to fraud.\par
+\par
+
+\pard\cbpat8\widctlpar\sa160\cf4\par
+
+\pard\sa200\sl276\slmult1\cf0\f2\lang9\par
+}
+ 

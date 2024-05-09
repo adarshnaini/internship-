@@ -1,0 +1,253 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2 Arial;}{\f2\fswiss\fprq2\fcharset0 Calibri;}{\f3\fnil\fcharset0 Calibri;}{\f4\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red18\green54\blue84;\red68\green68\blue68;\red0\green0\blue0;\red36\green41\blue46;\red246\green248\blue250;\red0\green0\blue255;\red255\green255\blue255;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\cbpat7\widctlpar\sa240\qc\cf1\b\f0\fs36 Global Power Plant Database\par
+
+\pard\cbpat7\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat7\widctlpar\sa150\cf2\b0\fs22 The Global Power Plant Database is a comprehensive, open source database of power plants around the world. It centralizes power plant data to make it easier to navigate, compare and draw insights for one\rquote s own analysis. The database covers approximately 14,000 power plants from 3 countries(USA, AUS, INDIA) and includes thermal plants (e.g. coal, gas, oil, nuclear, biomass, waste, geothermal) and renewables (e.g. hydro, wind, solar). Each power plant is geolocated and entries contain information on plant capacity, generation, ownership, and fuel type. It will be continuously updated as data becomes available.\cf3\par
+
+\pard\cbpat7\widctlpar\sb360\sa240\expndtw-2\b Key attributes of the database\b0\par
+
+\pard\cbpat7\widctlpar\sa240\cf4\expndtw0 The database includes the following indicators:\cf3\par
+
+\pard\cbpat7{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\widctlpar\fi-360\li720\sb100\sa100\cf4 `country` (text): 3 character country code corresponding to the ISO 3166-1 alpha-3 specification [5]\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `country_long` (text): longer form of the country designation\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `name` (text): name or title of the power plant, generally in Romanized form\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `gppd_idnr` (text): 10 or 12 character identifier for the power plant\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `capacity_mw` (number): electrical generating capacity in megawatts\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `latitude` (number): geolocation in decimal degrees; WGS84 (EPSG:4326)\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `longitude` (number): geolocation in decimal degrees; WGS84 (EPSG:4326)\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `primary_fuel` (text): energy source used in primary electricity generation or export\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `other_fuel1` (text): energy source used in electricity generation or export\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `other_fuel2` (text): energy source used in electricity generation or export\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `other_fuel3` (text): energy source used in electricity generation or export\cf3\par
+{\pntext\f4\'B7\tab}\cf4\~`commissioning_year` (number): year of plant operation, weighted by unit-capacity when data is available\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `owner` (text): majority shareholder of the power plant, generally in Romanized form\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `source` (text): entity reporting the data; could be an organization, report, or document, generally in Romanized form\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `url` (text): web document corresponding to the `source` field\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `geolocation_source` (text): attribution for geolocation information\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `wepp_id` (text): a reference to a unique plant identifier in the widely-used PLATTS-WEPP database.\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `year_of_capacity_data` (number): year the capacity information was reported\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_gwh_2013` (number): electricity generation in gigawatt-hours reported for the year 2013\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_gwh_2014` (number): electricity generation in gigawatt-hours reported for the year 2014\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_gwh_2015` (number): electricity generation in gigawatt-hours reported for the year 2015\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_gwh_2016` (number): electricity generation in gigawatt-hours reported for the year 2016\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_gwh_2017` (number): electricity generation in gigawatt-hours reported for the year 2017\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_gwh_2018` (number): electricity generation in gigawatt-hours reported for the year 2018\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_gwh_2019` (number): electricity generation in gigawatt-hours reported for the year 2019\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `generation_data_source` (text): attribution for the reported generation information\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_gwh_2013` (number): estimated electricity generation in gigawatt-hours for the year 2013\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_gwh_2014` (number): estimated electricity generation in gigawatt-hours for the year 2014\~\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_gwh_2015` (number): estimated electricity generation in gigawatt-hours for the year 2015\~\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_gwh_2016` (number): estimated electricity generation in gigawatt-hours for the year 2016\~\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_gwh_2017` (number): estimated electricity generation in gigawatt-hours for the year 2017\~\cf3\par
+{\pntext\f4\'B7\tab}\cf4 'estimated_generation_note_2013` (text): label of the model/method used to estimate generation for the year 2013\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_note_2014` (text): label of the model/method used to estimate generation for the year 2014\~\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_note_2015` (text): label of the model/method used to estimate generation for the year 2015\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_note_2016` (text): label of the model/method used to estimate generation for the year 2016\cf3\par
+{\pntext\f4\'B7\tab}\cf4 `estimated_generation_note_2017` (text): label of the model/method used to estimate generation for the year 2017\~\cf3\par
+
+\pard\cbpat7\widctlpar\sb360\sa240\cf4 Fuel Type Aggregation\cf3\par
+
+\pard\cbpat7\widctlpar\sa240\cf4 We define the "Fuel Type" attribute of our database based on common fuel categories.\~\cf3\par
+\b Prediction :\b0\~\~ Make two prediction\~ 1)\~\b Primary\b0\~\b Fuel\~\b0\~ \~2)\cf4\highlight5\b\~capacity_mw\~\par
+ANSWER - The Global Power Plant Database is a comprehensive, open source database of power plants around the world. It centralizes power plant data to make it easier to navigate, compare and draw insights for one\rquote s own analysis. The database covers approximately 35,000 power plants from 167 countries and includes thermal plants (e.g. coal, gas, oil, nuclear, biomass, waste, geothermal) and renewables (e.g. hydro, wind, solar). Each power plant is geolocated and entries contain information on plant capacity, generation, ownership, and fuel type. It will be continuously updated as data becomes available.\par
+\par
+The methodology for the dataset creation is given in the World Resources Institute publication "A Global Database of Power Plants". Data updates may occur without associated updates to this manuscript.\par
+\par
+\par
+Additional Metadata\par
+\par
+Attribute\tab Value(s)\par
+Keywords\tab climate, energy, power plants\par
+Contributors\tab Global Energy Observatory (Author)\par
+Version\tab 1.3.0\par
+Licenses\tab CC-BY-4.0\par
+\par
+Fields\par
+\par
+Column\tab Type\tab Format\tab Title\tab Description\tab Rdftype\par
+country\tab string\tab default\tab Country Code\tab The 3-letter ISO 3166-1 alpha code for each country\tab -\par
+country_long\tab string\tab default\tab Country Name\tab The name of the country the power plant is located within\tab -\par
+name\tab string\tab default\tab Name\tab The name of the power plant\tab -\par
+gppd_idnr\tab string\tab default\tab GPPD ID\tab The unique identifier for each power plant in the Global Power Plant Database\tab -\par
+capacity_mw\tab number\tab default\tab Installed Capacity (MW)\tab Installed electrical capacity of eachpower plant (MW)\tab {{\field{\*\fldinst{HYPERLINK http://openenergy-platform.org/ontology/oeo/OEO_00230003 }}{\fldrslt{http://openenergy-platform.org/ontology/oeo/OEO_00230003\ul0\cf0}}}}\f0\fs22\par
+latitude\tab number\tab default\tab Latitude\tab The north-south position of a point on the Earth's surface\tab {{\field{\*\fldinst{HYPERLINK http://www.w3.org/2003/01/geo/wgs84_pos#lat }}{\fldrslt{http://www.w3.org/2003/01/geo/wgs84_pos#lat\ul0\cf0}}}}\f0\fs22\par
+longitude\tab number\tab default\tab Longitude\tab The east\f1\endash west position of a point on the Earth's surface\tab {{\field{\*\fldinst{HYPERLINK http://www.w3.org/2003/01/geo/wgs84_pos#long }}{\fldrslt{http://www.w3.org/2003/01/geo/wgs84_pos#long\ul0\cf0}}}}\f1\fs22\par
+primary_fuel\tab string\tab default\tab Primary Fuel Type\tab The primary fuel used by the power plant\tab -\par
+other_fuel1\tab string\tab default\tab Secondary Fuel Type\tab The secondary fuel used by the power plant\tab -\par
+other_fuel2\tab string\tab default\tab Tertiary Fuel Type\tab The tertiary fuel used by the power plant\tab -\par
+other_fuel3\tab string\tab default\tab Quaternary Fuel Type\tab The quaternary fuel used by the power plant\tab -\par
+commissioning_year\tab year\tab default\tab Commissioning Year\tab The first year the plant generated electricity\tab -\par
+owner\tab string\tab default\tab Owner\tab The primary owner of the power plant\tab -\par
+source\tab string\tab default\tab Source\tab The source of the data on each power plant\tab -\par
+url\tab string\tab default\tab URL\tab URL linking directly to data source\tab -\par
+geolocation_source\tab string\tab default\tab Geolocation Source\tab The source of the spatial data on each power plant\tab -\par
+wepp_id\tab number\tab default\tab PLATTS-WEPP ID\tab The unique identifier used to refer to power plants in the PLATTS-WEBB dataset\tab -\par
+year_of_capacity_data\tab year\tab default\tab Year of Capacity Report\tab The year of the reported capacity value\tab -\par
+generation_gwh_2013\tab number\tab default\tab Annual Generation in 2013\tab Annual generation (during 2013) in gigawatt hours (GWhs), gross\tab -\par
+generation_gwh_2014\tab number\tab default\tab Annual Generation in 2014\tab Annual generation (during 2014) in gigawatt hours (GWhs), gross\tab -\par
+generation_gwh_2015\tab number\tab default\tab Annual Generation in 2015\tab Annual generation (during 2015) in gigawatt hours (GWhs), gross\tab -\par
+generation_gwh_2016\tab number\tab default\tab Annual Generation in 2016\tab Annual generation (during 2016) in gigawatt hours (GWhs), gross\tab -\par
+generation_gwh_2017\tab number\tab default\tab Annual Generation in 2017\tab Annual generation (during 2017) in gigawatt hours (GWhs), gross\tab -\par
+generation_gwh_2018\tab number\tab default\tab Annual Generation in 2018\tab Annual generation (during 2018) in gigawatt hours (GWhs), gross\tab -\par
+generation_gwh_2019\tab number\tab default\tab Annual Generation in 2019\tab Annual generation (during 2019) in gigawatt hours (GWhs), gross\tab -\par
+generation_data_source\tab string\tab default\tab Generation Source\tab The source of the generation data on each power plant\tab -\par
+estimated_generation_gwh_2013\tab number\tab default\tab Estimated Annual Generation in 2013\tab Estimated annual generation (during 2013) in gigawatt hours (GWhs), gross\tab -\par
+estimated_generation_gwh_2014\tab number\tab default\tab Estimated Annual Generation in 2014\tab Estimated annual generation (during 2014) in gigawatt hours (GWhs), gross\tab -\par
+estimated_generation_gwh_2015\tab number\tab default\tab Estimated Annual Generation in 2015\tab Estimated annual generation (during 2015) in gigawatt hours (GWhs), gross\tab -\par
+estimated_generation_gwh_2016\tab number\tab default\tab Estimated Annual Generation in 2016\tab Estimated annual generation (during 2016) in gigawatt hours (GWhs), gross\tab -\par
+estimated_generation_gwh_2017\tab number\tab default\tab Estimated Annual Generation in 2017\tab Estimated annual generation (during 2017) in gigawatt hours (GWhs), gross\tab -\par
+estimated_generation_note_2013\tab string\tab default\tab Estimated Annual Generation Note for 2013\tab A note on the estimation process behind calculating gross annual generation (during 2013)\tab -\par
+estimated_generation_note_2014\tab string\tab default\tab Estimated Annual Generation Note for 2014\tab A note on the estimation process behind calculating gross annual generation (during 2014)\tab -\par
+estimated_generation_note_2015\tab string\tab default\tab Estimated Annual Generation Note for 2015\tab A note on the estimation process behind calculating gross annual generation (during 2015)\tab -\par
+estimated_generation_note_2016\tab string\tab default\tab Estimated Annual Generation Note for 2016\tab A note on the estimation process behind calculating gross annual generation (during 2016)\tab -\par
+estimated_generation_note_2017\tab string\tab default\tab Estimated Annual Generation Note for 2017\tab A note on the estimation process behind calculating gross annual generation (during 2017)\par
+\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\highlight0\kerning2\b0\f2\par
+
+\pard\cbpat7\widctlpar\sa240\qc\cf1\kerning0\b\f0\fs36 Temperature Forecast Project using ML\par
+
+\pard\cbpat7\widctlpar\sa240\fs28 Project Description\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning2\b0\fs22 This data is for the purpose of bias correction of next-day maximum and minimum air temperatures forecast of the LDAPS model operated by the Korea Meteorological Administration over Seoul, South Korea. This data consists of summer data from 2013 to 2017. The input data is largely composed of the LDAPS model's next-day forecast data, in-situ maximum and minimum temperatures of present-day, and geographic auxiliary variables. There are two outputs (i.e. next-day maximum and minimum air temperatures) in this data. Hindcast validation was conducted for the period from 2015 to 2017.\cf3\par
+\par
+\b\fs28 Attribute Information:\par
+\fs22 For more information, read [Cho et al, 2020].\par
+\b0 1. station - used weather station number: 1 to 25 \par
+2. Date - Present day: yyyy-mm-dd ('2013-06-30' to '2017-08-30')\par
+3. Present_Tmax - Maximum air temperature between 0 and 21 h on the present day (\'c2\'b0C): 20 to 37.6\par
+4. Present_Tmin - Minimum air temperature between 0 and 21 h on the present day (\'c2\'b0C): 11.3 to 29.9\par
+5. LDAPS_RHmin - LDAPS model forecast of next-day minimum relative humidity (%): 19.8 to 98.5\par
+6. LDAPS_RHmax - LDAPS model forecast of next-day maximum relative humidity (%): 58.9 to 100\par
+7. LDAPS_Tmax_lapse - LDAPS model forecast of next-day maximum air temperature applied lapse rate (\'c2\'b0C): 17.6 to 38.5\par
+8. LDAPS_Tmin_lapse - LDAPS model forecast of next-day minimum air temperature applied lapse rate (\'c2\'b0C): 14.3 to 29.6\par
+9. LDAPS_WS - LDAPS model forecast of next-day average wind speed (m/s): 2.9 to 21.9\par
+10. LDAPS_LH - LDAPS model forecast of next-day average latent heat flux (W/m2): -13.6 to 213.4\par
+11. LDAPS_CC1 - LDAPS model forecast of next-day 1st 6-hour split average cloud cover (0-5 h) (%): 0 to 0.97\par
+12. LDAPS_CC2 - LDAPS model forecast of next-day 2nd 6-hour split average cloud cover (6-11 h) (%): 0 to 0.97\par
+13. LDAPS_CC3 - LDAPS model forecast of next-day 3rd 6-hour split average cloud cover (12-17 h) (%): 0 to 0.98\par
+14. LDAPS_CC4 - LDAPS model forecast of next-day 4th 6-hour split average cloud cover (18-23 h) (%): 0 to 0.97\par
+15. LDAPS_PPT1 - LDAPS model forecast of next-day 1st 6-hour split average precipitation (0-5 h) (%): 0 to 23.7\par
+16. LDAPS_PPT2 - LDAPS model forecast of next-day 2nd 6-hour split average precipitation (6-11 h) (%): 0 to 21.6\par
+17. LDAPS_PPT3 - LDAPS model forecast of next-day 3rd 6-hour split average precipitation (12-17 h) (%): 0 to 15.8\par
+18. LDAPS_PPT4 - LDAPS model forecast of next-day 4th 6-hour split average precipitation (18-23 h) (%): 0 to 16.7\par
+19. lat - Latitude (\'c2\'b0): 37.456 to 37.645\par
+20. lon - Longitude (\'c2\'b0): 126.826 to 127.135\par
+21. DEM - Elevation (m): 12.4 to 212.3\par
+22. Slope - Slope (\'c2\'b0): 0.1 to 5.2\par
+23. Solar radiation - Daily incoming solar radiation (wh/m2): 4329.5 to 5992.9\par
+24. Next_Tmax - The next-day maximum air temperature (\'c2\'b0C): 17.4 to 38.9\par
+25. Next_Tmin - The next-day minimum air temperature (\'c2\'b0C): 11.3 to 29.8T\par
+\par
+
+\pard\cbpat7\widctlpar\sa240\qc\cf1\kerning0\b\fs36 Loan Application Status Prediction\par
+
+\pard\cbpat7\widctlpar\sa240\fs28 Project Description\par
+\cf4\b0\fs22 This dataset includes details of applicants who have applied for loan. The dataset includes details like credit history, loan amount, their income, dependents etc.\~\cf3\par
+\cf4\b Independent Variables:\cf3\b0\par
+
+\pard\cbpat7 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\widctlpar\fi-360\li720\sa240\cf0 Loan_ID - This refer to the unique identifier of the applicant's affirmed purchases\par
+{\pntext\f0 2.\tab}Gender - This refers to either of the two main categories (male and female) into which applicants are divided on the basis of their reproductive functions\par
+{\pntext\f0 3.\tab}Married - This refers to applicant being in a state of matrimony\par
+{\pntext\f0 4.\tab}Dependents - This refres to persons who depends on the applicants for survival\par
+{\pntext\f0 5.\tab}Education - This refers to number of years in which applicant received systematic instruction, especially at a school or university\par
+{\pntext\f0 6.\tab}Self_Employed - This refers to applicant working for oneself as a freelancer or the owner of a business rather than for an employer\par
+{\pntext\f0 7.\tab}Applicant Income - This refers to disposable income available for the applicant's use under State law.\par
+{\pntext\f0 8.\tab}CoapplicantIncome - This refers to disposable income available for the people that participate in the loan application process alongside the main applicant use under State law.\par
+{\pntext\f0 9.\tab}Loan_Amount - This refers to the amount of money an applicant owe at any given time.\par
+{\pntext\f0 10.\tab}Loan_Amount_Term - This refers to the duaration in which the loan is availed to the applicant\par
+{\pntext\f0 11.\tab}Credit History - This refers to a record of applicant's ability to repay debts and demonstrated responsibility in repaying them.\par
+{\pntext\f0 12.\tab}Property_Area - This refers to the total area within the boundaries of the property as set out in Schedule.\par
+
+\pard\cbpat7 
+{\pntext\f0 13.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart13\pndec{\pntxta.}}
+\widctlpar\fi-360\li720\sb100\sa100 Loan_Status - This refres to whether applicant is eligible to be availed the Loan requested.\par
+
+\pard\cbpat7\widctlpar\sa240\cf4 You have to build a model that can predict whether the loan of the applicant will be approved(Loan_status) or not on the basis of the details provided in the dataset.\~\cf3\par
+
+\pard\widctlpar\sa160\sl252\slmult1\kerning2\par
+
+\pard\cbpat7\widctlpar\sa240\cf4\highlight5\kerning0\b Loan Approval Prediction\par
+answer- This repo contains the Loan Approval Prediction project as part of my data science portfolio. This project is completed as part of the online hackathon organized by [Analytics Vidhya](https://www.analyticsvidhya.com/). Evaluation metric of the hackathon is accuracy i.e. percentage of loan approval that is correctly predicted. After trying and testing 4 different algorithms, the best accuracy on the public leaderboard is achieved by Logistic Regression (0.7847), followed by RandomForest (0.7778) and XGBoost (0.7778), while Decision Tree performed the worst (0.6458).\par
+This project covers the whole process from problem statement to model development and evaluation:\par
+\par
+Problem Statement\par
+Hypothesis Generation\par
+Data Collection\par
+Exploratory Data Analysis (EDA)\par
+Data Pre-processing\par
+Model Development and Evaluation\par
+Conclusion\par
+Below are my submission results:\par
+\par
+\par
+Problem Statement\par
+Business Problem\par
+"Dream Housing Finance company deals in all home loans. They have presence across all urban, semi urban and rural areas. Customer first apply for home loan after that company validates the customer eligibility for loan. Company wants to automate the loan eligibility process (real time) based on customer detail provided while filling online application form. These details are Gender, Marital Status, Education, Number of Dependents, Income, Loan Amount, Credit History and others. To automate this process, they have given a problem to identify the customers segments, those are eligible for loan amount so that they can specifically target these customers."\par
+\par
+Loan prediction is a very common real-life problem that every retail bank faces in their lending operations. If the loan approval process is automated, it can save a lot of man hours and improve the speed of service to the customers. The increase in customer satisfaction and savings in operational costs are significant. However, the benefits can only be reaped if the bank has a robust model to accurately predict which customer's loan it should approve and which to reject, in order to minimize the risk of loan default.\par
+\par
+Translate Business Problem into Data Science / Machine Learning problem\par
+This is a classification problem where we have to predict whether a loan will be approved or not. Specifically, it is a binary classification problem where we have to predict either one of the two classes given i.e. approved (Y) or not approved (N). Another way to frame the problem is to predict whether the loan will likely to default or not, if it is likely to default, then the loan would not be approved, and vice versa. The dependent variable or target variable is the Loan_Status, while the rest are independent variable or features. We need to develop a model using the features to predict the target variable.\par
+\par
+Hypothesis Generation\par
+Hypothesis Generation is the process of listing out all the possible factors that can affect the outcome i.e. which of the features will have an impact on whether a loan will be approved or not. Some of the hypothesis are:\par
+\par
+Education - Applicants with higher education level i.e. graduate level should have higher chances of loan approval\par
+Income: Applicants with higher income should have more chances of loan approval\par
+Loan amount: If the loan amount is less, the chances of loan approval should be high\par
+Loan term: Loans with shorter time period should have higher chances of approval\par
+Previous credit history: Applicants who have repayed their previous debts should have higher chances of loan approval\par
+Monthly installment amount: If the monthly installment amount is low, the chances of loan approval should be high\par
+And so on\par
+Some of the hypothesis seem intuitive while others may not. We will try to validate each of these hypothesis based on the dataset.\par
+\par
+Data Collection\par
+The data have already been provided by Analytics Vidhya on the Hackathon page. The training set will be used for training the model, i.e. our model will learn from this data. It contains all the independent variables and the target variable. The test set contains all the independent variables, but not the target variable. We will apply the model to predict the target variable for the test data. There are 13 columns of features and 614 rows of records in the training set and 12 columns of features and 367 rows of records in the test set. The dataset variables are summarized as below:\par
+\par
+| No | Variable | Type | Description | |---|---|---|---|---| | 1 | Loan_ID | Numerical - Discrete | Unique Loan ID | | 2 | Gender | Categorical - Nominal | Male / Female | | 3 | Married | Categorical - Nominal | Applicant married (Y/N) | | 4 | Dependents | Categorical - Ordinal | Number of dependents (0, 1, 2, 3+) | | 5 | Education | Categorical - Nominal | Applicant Education (Graduate / Under Graduate) | | 6 | Self_Employed | Categorical - Nominal | Self employed (Y/N) | | 7 | ApplicantIncome | Numerical - Continuous | Applicant income | | 8 | CoapplicantIncome | Numerical - Continuous | Coapplicant income | | 9 | LoanAmount | Numerical - Continuous | Loan amount in thousands | | 10 | Loan_Amount_Term | Numerical - Discrete | Term of loan in months | | 11 | Credit_History | Categorical - Nominal | credit history meets guidelines (0, 1) | | 12 | Property_Area | Categorical - Ordinal | Urban / Semi Urban / Rural | | 13 | Loan_Status | Categorical - Nominal | Loan approved (Y/N) |\par
+\par
+Exploratory Data Analysis (EDA)\par
+We will use Python to explore the data in order to gain a better understanding of the features and target variable. We will also analyze the data to summarize their main characteristics, using various visualization techniques.\par
+\par
+# import libraries\par
+%matplotlib inline\par
+import numpy as np\par
+import pandas as pd\par
+import matplotlib.pyplot as plt\par
+import seaborn as sns\par
+import warnings\par
+warnings.filterwarnings("ignore")\par
+# load the train and test dataset\par
+train = pd.read_csv("train_u6lujuX_CVtuZ9i.csv")\par
+test = pd.read_csv("test_Y3wMUE5_7gLdaTN.csv")\par
+# make a copy of original data\par
+# so that even if we have to make any changes in these datasets we would not lose the original datasets\par
+\par
+train_original = train.copy()\par
+test_original = test.copy()\par
+# take a look at the top 5 rows of the train set, notice the column "Loan_Status"\par
+train.head()\par
+Loan_ID\tab Gender\tab Married\tab Dependents\tab Education\tab Self_Employed\tab ApplicantIncome\tab CoapplicantIncome\tab LoanAmount\tab Loan_Amount_Term\tab Credit_History\tab Property_Area\tab Loan_Status\par
+0\tab LP001002\tab Male\tab No\tab 0\tab Graduate\tab No\tab 5849\tab 0.0\tab NaN\tab 360.0\tab 1.0\tab Urban\tab Y\par
+1\tab LP001003\tab Male\tab Yes\tab 1\tab Graduate\tab No\tab 4583\tab 1508.0\tab 128.0\tab 360.0\tab 1.0\tab Rural\tab N\par
+2\tab LP001005\tab Male\tab Yes\tab 0\tab Graduate\tab Yes\tab 3000\tab 0.0\tab 66.0\tab 360.0\tab 1.0\tab Urban\tab Y\par
+3\tab LP001006\tab Male\tab Yes\tab 0\tab Not Graduate\tab No\tab 2583\tab 2358.0\tab 120.0\tab 360.0\tab 1.0\tab Urban\tab Y\par
+4\tab LP001008\tab Male\tab No\tab 0\tab Graduate\tab No\tab 6000\tab 0.0\tab 141.0\tab 360.0\tab 1.0\tab Urban\tab Y\par
+# take a look at the top 5 rows of the test set, notice the absense of "Loan_Status" that we will predict\par
+test.head()\par
+Loan_ID\tab Gender\tab Married\tab Dependents\tab Education\tab Self_Employed\tab ApplicantIncome\tab CoapplicantIncome\tab LoanAmount\tab Loan_Amount_Term\tab Credit_History\tab Property_Area\par
+0\tab LP001015\tab Male\tab Yes\tab 0\tab Graduate\tab No\tab 5720\tab 0\tab 110.0\tab 360.0\tab 1.0\tab Urban\par
+1\tab LP001022\tab Male\tab Yes\tab 1\tab Graduate\tab No\tab 3076\tab 1500\tab 126.0\tab 360.0\tab 1.0\tab Urban\par
+2\tab LP001031\tab Male\tab Yes\tab 2\tab Graduate\tab No\tab 5000\tab 1800\tab 208.0\tab 360.0\tab 1.0\tab Urban\par
+3\tab LP001035\tab Male\tab Yes\tab 2\tab Graduate\tab No\tab 2340\tab 2546\tab 100.0\tab 360.0\tab NaN\tab Urban\par
+4\tab LP001051\tab Male\tab No\tab 0\tab Not Graduate\tab No\tab 3276\tab 0\tab 78.0\par
+
+\pard\sa200\sl276\slmult1\cf0\highlight0\b0\f3\lang9\par
+}
+ 

@@ -1,0 +1,363 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fnil\fcharset0 Calibri;}{\f2\fswiss\fprq2 Arial;}{\f3\fswiss\fprq2\fcharset0 Source Sans Pro;}{\f4\fswiss\fprq2\fcharset0 Open Sans;}{\f5\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red18\green54\blue84;\red54\green57\blue77;\red91\green91\blue91;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\cbpat5\widctlpar\sa240\qc\cf1\b\f0\fs48 Baseball Case Study\fs36\par
+\cf0\b0\f1\fs28\lang9\par
+
+\pard\cbpat5\widctlpar\sa240\cf1\b\f0\lang1033 Project Description\par
+\cf2\b0\fs22 This dataset utilizes data from 2014 Major League Baseball seasons in order to develop an algorithm that predicts the number of wins for a given team in the 2015 season based on several different indicators of success. There are 16 different features that will be used as the inputs to the machine learning and the output will be a value that represents the number of wins.\~\par
+\b -- Input features-\b0\par
+
+\pard\cbpat5 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\widctlpar\fi-360\li720\sa240\cf0 W - This indicates the number of Wins credited to a pitcher: number of games where pitcher was pitching while their team took the lead and went on to win, also the starter needs to pitch at least 5 innings of work.\par
+{\pntext\f0 2.\tab}R - This indicates Runs scored. A run is scored when a player advances around first, second and third base and returns safely to home plate, touching the bases in that order, before three outs are recorded and all obligations to reach base safely on batted balls are met or assured: number of times a player crosses home plate.\par
+{\pntext\f0 3.\tab}AB - This means At bat or time at bat. It's is a batter's turn batting against a pitcher: plate appearances, not including bases on balls, being hit by pitch, sacrifices, interference, or obstruction.\par
+{\pntext\f0 4.\tab}H - This means Hit. It's also called a "base hit", is credited to a batter when the batter safely reaches or passes first base after hitting the ball into fair territory, without the benefit of either an error or a fielder's choice: reaching base because of a batted, fair ball without error by the defense.\par
+{\pntext\f0 5.\tab}2B - This means the act of a batter striking the pitched ball and safely reaching second base without being called out by the umpire, without the benefit of a fielder's misplay (see error) or another runner being put out on a fielder's choice. A double is a type of hit (the others being the single, triple and home run) and is sometimes called a "two-bagger" or "two-base hit": hits on which the batter reaches second base safely without the contribution of a fielding error.\par
+{\pntext\f0 6.\tab}3B - This measns a Triple.It's is the act of a batter safely reaching third base after hitting the ball, with neither the benefit of a fielder's misplay nor another runner being put out on a fielder's choice. A triple is sometimes called a "three-bagger" or "three-base hit": hits on which the batter reaches third base safely without the contribution of a fielding error.\par
+{\pntext\f0 7.\tab}HR - This means Home runs. It's scored when the ball is hit in such a way that the batter is able to circle the bases and reach home plate safely in one play without any errors being committed by the defensive team. A home run is usually achieved by hitting the ball over the outfield fence between the foul poles (or hitting either foul pole) without the ball touching the field: hits on which the batter successfully touched all four bases, without the contribution of a fielding error.\par
+{\pntext\f0 8.\tab}BB - This means Base on balls (also called a "walk"). It occurs in baseball when a batter receives four pitches that the umpire calls balls, and is in turn awarded first base without the possibility of being called out: hitter not swinging at four pitches called out of the strike zone and awarded first base.\par
+{\pntext\f0 9.\tab}SO - Also denoted as "K" means Strikeout. It occurs when a batter accumulates three strikes during a time at bat. It usually means that the batter is out: number of batters who received strike three.\par
+{\pntext\f0 10.\tab}SB - This means Stolen base. It occurs when a runner advances to a base to which they are not entitled and the official scorer rules that the advance should be credited to the action of the runner: number of bases advanced by the runner while the ball is in the possession of the defense.\par
+{\pntext\f0 11.\tab}RA - This means Run Average. It refer to measures of the rate at which runs are allowed or scored.\par
+{\pntext\f0 12.\tab}ER - This means Earned run. It refers to any run that was fully enabled by the offensive team's production in the face of competent play from the defensive team: number of runs that did not occur as a result of errors or passed balls.\par
+{\pntext\f0 13.\tab}ERA - This means Earned Run Average. It refers to the average of earned runs allowed by a pitcher per nine innings pitched (i.e. the traditional length of a game). It is determined by dividing the number of earned runs allowed by the number of innings pitched and multiplying by nine: total number of earned runs (see "ER" above), multiplied by 9, divided by innings pitched.\par
+{\pntext\f0 14.\tab}CG - This means Complete Game. It's the act of a pitcher pitching an entire game without the benefit of a relief pitcher. A pitcher who meets this criterion will be credited with a complete game regardless of the number of innings played: number of games where player was the only pitcher for their team.\par
+{\pntext\f0 15.\tab}SHO - This means Shutout. It refers to the act by which a single pitcher pitches a complete game and does not allow the opposing team to score a run: number of complete games pitched with no runs allowed.\par
+{\pntext\f0 16.\tab}SV - This means Save. It's credited to a pitcher who finishes a game for the winning team under certain prescribed circumstances: number of games where the pitcher enters a game led by the pitcher's team, finishes the game without surrendering the lead, is not the winning pitcher, and either (a) the lead was three runs or fewer when the pitcher entered the game; (b) the potential tying run was on base, at bat, or on deck; or (c) the pitcher pitched three or more innings.\par
+{\pntext\f0 17.\tab}E - This means Errors. It's an act, in the judgment of the official scorer, of a fielder misplaying a ball in a manner that allows a batter or baserunner to advance one or more bases or allows a plate appearance to continue after the batter should have been put out. The term error is sometimes used to refer to the play during which an error was committed: number of times a fielder fails to make a play he should have made with common effort, and the offense benefits as a result.\par
+
+\pard\cbpat5\widctlpar\sa240 Problem Definition.\par
+\par
+ANSWER - It is a sports case study where data for 2014 to develop an algorithm that predicts the number of wins for a given team in the 2015 season based on several different indicators of success. It will help the team management to replace the team member.\par
+\par
+About Data\par
+R: Runs,\par
+\par
+AB: At Bats\par
+\par
+H: Hits\par
+\par
+2B: Doubles\par
+\par
+3B: Triples\par
+\par
+HR: Homeruns\par
+\par
+BB: Walks\par
+\par
+SO: Strikeouts\par
+\par
+SB: Stolen Bases\par
+\par
+RA: Runs Allowed\par
+\par
+ER: Earned Runs\par
+\par
+ERA: Earned Run Average (ERA)\par
+\par
+CG: Shutouts\par
+\par
+SV: Saves,\par
+\par
+SV: Complete Games\par
+\par
+E: Errors\par
+\par
+W: Win\par
+\par
+Data Analysis and EDA Concluding Remark.\par
+\par
+Importing data(click to get the data)\par
+\par
+\par
+The shape of the data frame.\par
+\par
+df.shape\par
+(30, 17)\par
+\par
+checking for null value\par
+\par
+sns.heatmap(df.isnull().sum().to_frame())\par
+\par
+Basic information about dataset\par
+\par
+df.info()\par
+# Column Non-Null Count Dtype\par
+\par
+\f2\emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  \emdash  -\par
+\par
+0 W 30 non-null int64\par
+\par
+1 R 30 non-null int64\par
+\par
+2 AB 30 non-null int64\par
+\par
+3 H 30 non-null int64\par
+\par
+4 2B 30 non-null int64\par
+\par
+5 3B 30 non-null int64\par
+\par
+6 HR 30 non-null int64\par
+\par
+7 BB 30 non-null int64\par
+\par
+8 SO 30 non-null int64\par
+\par
+9 SB 30 non-null int64\par
+\par
+10 RA 30 non-null int64\par
+\par
+11 ER 30 non-null int64\par
+\par
+12 ERA 30 non-null float64\par
+\par
+13 CG 30 non-null int64\par
+\par
+14 SHO 30 non-null int64\par
+\par
+15 SV 30 non-null int64\par
+\par
+16 E 30 non-null int64\par
+\par
+\par
+No need to change the datatype they are appropriate so we can skip the step of data conversion Now directly jumps to Visualization\par
+\par
+Visualization\par
+\par
+Now, let\rquote s visualize the distribution of continuous features\par
+
+\pard\cbpat5\widctlpar\sa240\qc\par
+
+\pard\cbpat5\widctlpar\sa240\qc\cf1\b\f0\fs48 Avocado Project\par
+
+\pard\cbpat5\widctlpar\sa240\par
+\fs28 Project Description\par
+\cf2\b0\fs22 This data was downloaded from the Hass Avocado Board website in May of 2018 & compiled into a single CSV.\~\par
+The table below represents weekly 2018 retail scan data for National retail volume (units) and price. Retail scan data comes directly from retailers\rquote  cash registers based on actual retail sales of Hass avocados.\~\par
+Starting in 2013, the table below reflects an expanded, multi-outlet retail data set. Multi-outlet reporting includes an aggregation of the following channels: grocery, mass, club, drug, dollar and military. The Average Price (of avocados) in the table reflects a per unit (per avocado) cost, even when multiple units (avocados) are sold in bags.\~\par
+The Product Lookup codes (PLU\rquote s) in the table are only for Hass avocados. Other varieties of avocados (e.g. greenskins) are not included in this table.\par
+Some relevant columns in the dataset:\par
+
+\pard\cbpat5{\pntext\f5\'B7\tab}{\*\pn\pnlvlblt\pnf5\pnindent360{\pntxtb\'B7}}\widctlpar\fi-360\li720\sb100\sa100 Date\~- The date of the observation\par
+{\pntext\f5\'B7\tab}AveragePrice\~- the average price of a single avocado\par
+{\pntext\f5\'B7\tab}type\~- conventional or organic\par
+{\pntext\f5\'B7\tab}year\~- the year\par
+{\pntext\f5\'B7\tab}Region\~- the city or region of the observation\par
+{\pntext\f5\'B7\tab}Total Volume\~- Total number of avocados sold\par
+{\pntext\f5\'B7\tab}4046\~- Total number of avocados with PLU 4046 sold\par
+{\pntext\f5\'B7\tab}4225\~- Total number of avocados with PLU 4225 sold\par
+{\pntext\f5\'B7\tab}4770\~- Total number of avocados with PLU 4770 sold\par
+
+\pard\cbpat5\widctlpar\sa240\f3\fs24\par
+
+\pard\cbpat5\widctlpar\sb240\sa240\cf3\b\f4 Inspiration /Label\~\b0\par
+\f0\fs22 The dataset can be seen in two angles to find the region and find the average price .\par
+Task: One of Classification and other of Regression\par
+Do both tasks in the same .ipynb file and submit at\~single file.\~\par
+
+\pard\cbpat5\widctlpar\sa240\cf1\b\fs36\par
+\fs28 * Problem Statement\par
+answer - The notebooks explores the basic use of Pandas and will cover the basic commands of (EDA) for analysis purpose.\par
+\par
+In this study, we will try to see if we can predict the Avocado\rquote s Average Price based on different features. The features are different (Total Bags,Date,Type,Year,Region\'85).\par
+\par
+The variables of the dataset are the following:\par
+Categorical: \lquote region\rquote ,\rquote type\rquote\par
+Date: \lquote Date\rquote\par
+Numerical:\rquote Total Volume\rquote , \lquote 4046\rquote , \lquote 4225\rquote , \lquote 4770\rquote , \lquote Total Bags\rquote , \lquote Small Bags\rquote ,\rquote Large Bags\rquote ,\rquote XLarge Bags\rquote ,\rquote Year\rquote\par
+Target:\lquote AveragePrice\rquote\par
+\par
+* Data Loading and Description\par
+This data was downloaded and provided by INSAID, from the Hass Avocado Board website in May of 2018 & compiled into a single CSV.\par
+\par
+Represents weekly 2018 retail scan data for National retail volume (units) and price.\par
+\par
+The dataset comprises of 18249 observations of 14 columns. Below is a table showing names of all the columns and their description.\par
+\par
+The unclear numerical variables terminology is explained in the next section:\par
+\par
+Features\tab Description\par
+\lquote Unamed: 0\rquote\tab Its just a useless index feature that will be removed later\par
+\lquote Total Volume\rquote\tab Total sales volume of avocados\par
+\lquote 4046\rquote\tab Total sales volume of Small/Medium Hass Avocado\par
+\lquote 4225\rquote\tab Total sales volume of Large Hass Avocado\par
+\lquote 4770\rquote\tab Total sales volume of Extra Large Hass Avocado\par
+\lquote Total Bags\rquote\tab Total number of Bags sold\par
+\lquote Small Bags\rquote\tab Total number of Small Bags sold\par
+\lquote Large Bags\rquote\tab Total number of Large Bags sold\par
+\lquote XLarge Bags\rquote\tab Total number of XLarge Bags sold\par
+* Importing packages\par
+import pandas as pd\par
+import matplotlib\par
+matplotlib.use("Agg", warn=False)\par
+import matplotlib.pyplot as plt\par
+import numpy as np\par
+import seaborn as sns\par
+import pandas_profiling\par
+%matplotlib inline\par
+\par
+import plotly.offline as py\par
+import plotly.graph_objs as go\par
+from plotly.offline import init_notebook_mode\par
+init_notebook_mode(connected=True)\par
+from plotly import tools\par
+\par
+import warnings\par
+warnings.filterwarnings("ignore")\par
+warnings.filterwarnings("ignore",category=DeprecationWarning)\par
+Read in the Avocado Prices csv file as a DataFrame called df\par
+df= pd.read_csv("https://raw.githubusercontent.com/insaid2018/Term-2/master/Projects/avocado.csv")\par
+\par
+* Data Profiling\par
+\par
+* Understanding the Avocado Dataset\par
+Lets check our data shape:\par
+Dataset has 18249 rows and 14 columns.\par
+df.shape\par
+(18249, 14)\par
+df.columns  # This will print the names of all columns.\par
+Index(['Unnamed: 0', 'Date', 'AveragePrice', 'Total Volume', '4046', '4225',\par
+       '4770', 'Total Bags', 'Small Bags', 'Large Bags', 'XLarge Bags', 'type',\par
+       'year', 'region'],\par
+      dtype='object')\par
+df.head()  # Will give you first 5 records\par
+Unnamed: 0\tab Date\tab AveragePrice\tab Total Volume\tab 4046\tab 4225\tab 4770\tab Total Bags\tab Small Bags\tab Large Bags\tab XLarge Bags\tab type\tab year\tab region\par
+0\tab 0\tab 2015-12-27\tab 1.33\tab 64236.62\tab 1036.74\tab 54454.85\tab 48.16\tab 8696.87\tab 8603.62\tab 93.25\tab 0.0\tab conventional\tab 2015\tab Albany\par
+1\tab 1\tab 2015-12-20\tab 1.35\tab 54876.98\tab 674.28\tab 44638.81\tab 58.33\tab 9505.56\tab 9408.07\tab 97.49\tab 0.0\tab conventional\tab 2015\tab Albany\par
+2\tab 2\tab 2015-12-13\tab 0.93\tab 118220.22\tab 794.70\tab 109149.67\tab 130.50\tab 8145.35\tab 8042.21\tab 103.14\tab 0.0\tab conventional\tab 2015\tab Albany\par
+3\tab 3\tab 2015-12-06\tab 1.08\tab 78992.15\tab 1132.00\tab 71976.41\tab 72.58\tab 5811.16\tab 5677.40\tab 133.76\tab 0.0\tab conventional\tab 2015\tab Albany\par
+4\tab 4\tab 2015-11-29\tab 1.28\tab 51039.60\tab 941.48\tab 43838.39\tab 75.78\tab 6183.95\tab 5986.26\tab 197.69\tab 0.0\tab conventional\tab 2015\tab Albany\par
+The Feature "Unnamed:0" is just a representation of the indexes, so it's useless to keep it, we'll remove it in pre-processing !\par
+df.tail()  # This will print the last n rows of the Data Frame\par
+Unnamed: 0\tab Date\tab AveragePrice\tab Total Volume\tab 4046\tab 4225\tab 4770\tab Total Bags\tab Small Bags\tab Large Bags\tab XLarge Bags\tab type\tab year\tab region\par
+18244\tab 7\tab 2018-02-04\tab 1.63\tab 17074.83\tab 2046.96\tab 1529.20\tab 0.00\tab 13498.67\tab 13066.82\tab 431.85\tab 0.0\tab organic\tab 2018\tab WestTexNewMexico\par
+18245\tab 8\tab 2018-01-28\tab 1.71\tab 13888.04\tab 1191.70\tab 3431.50\tab 0.00\tab 9264.84\tab 8940.04\tab 324.80\tab 0.0\tab organic\tab 2018\tab WestTexNewMexico\par
+18246\tab 9\tab 2018-01-21\tab 1.87\tab 13766.76\tab 1191.92\tab 2452.79\tab 727.94\tab 9394.11\tab 9351.80\tab 42.31\tab 0.0\tab organic\tab 2018\tab WestTexNewMexico\par
+18247\tab 10\tab 2018-01-14\tab 1.93\tab 16205.22\tab 1527.63\tab 2981.04\tab 727.01\tab 10969.54\tab 10919.54\tab 50.00\tab 0.0\tab organic\tab 2018\tab WestTexNewMexico\par
+18248\tab 11\tab 2018-01-07\tab 1.62\tab 17489.58\tab 2894.77\tab 2356.13\tab 224.53\tab 12014.15\tab 11988.14\tab 26.01\tab 0.0\tab organic\tab 2018\tab WestTexNewMexico\par
+df.info() # This will give Index, Datatype and Memory information\par
+<class 'pandas.core.frame.DataFrame'>\par
+RangeIndex: 18249 entries, 0 to 18248\par
+Data columns (total 14 columns):\par
+Unnamed: 0      18249 non-null int64\par
+Date            18249 non-null object\par
+AveragePrice    18249 non-null float64\par
+Total Volume    18249 non-null float64\par
+4046            18249 non-null float64\par
+4225            18249 non-null float64\par
+4770            18249 non-null float64\par
+Total Bags      18249 non-null float64\par
+Small Bags      18249 non-null float64\par
+Large Bags      18249 non-null float64\par
+XLarge Bags     18249 non-null float64\par
+type            18249 non-null object\par
+year            18249 non-null int64\par
+region          18249 non-null object\par
+dtypes: float64(9), int64(2), object(3)\par
+memory usage: 1.9+ MB\par
+Well as a first observation we can see that we are lucky, we dont have any missing values (18249 complete data) and 13 columns. Now let's do some Feature Engineering on the Date Feature in pre-processing later so we can be able to use the day and the month columns in building our machine learning model later. ( I didn't mention the year because its already there in data frame)\par
+# Use include='all' option to generate descriptive statistics for all columns\par
+# You can get idea about which column has missing values using this\par
+df.describe()\par
+Unnamed: 0\tab AveragePrice\tab Total Volume\tab 4046\tab 4225\tab 4770\tab Total Bags\tab Small Bags\tab Large Bags\tab XLarge Bags\tab year\par
+count\tab 18249.000000\tab 18249.000000\tab 1.824900e+04\tab 1.824900e+04\tab 1.824900e+04\tab 1.824900e+04\tab 1.824900e+04\tab 1.824900e+04\tab 1.824900e+04\tab 18249.000000\tab 18249.000000\par
+mean\tab 24.232232\tab 1.405978\tab 8.506440e+05\tab 2.930084e+05\tab 2.951546e+05\tab 2.283974e+04\tab 2.396392e+05\tab 1.821947e+05\tab 5.433809e+04\tab 3106.426507\tab 2016.147899\par
+std\tab 15.481045\tab 0.402677\tab 3.453545e+06\tab 1.264989e+06\tab 1.204120e+06\tab 1.074641e+05\tab 9.862424e+05\tab 7.461785e+05\tab 2.439660e+05\tab 17692.894652\tab 0.939938\par
+min\tab 0.000000\tab 0.440000\tab 8.456000e+01\tab 0.000000e+00\tab 0.000000e+00\tab 0.000000e+00\tab 0.000000e+00\tab 0.000000e+00\tab 0.000000e+00\tab 0.000000\tab 2015.000000\par
+25%\tab 10.000000\tab 1.100000\tab 1.083858e+04\tab 8.540700e+02\tab 3.008780e+03\tab 0.000000e+00\tab 5.088640e+03\tab 2.849420e+03\tab 1.274700e+02\tab 0.000000\tab 2015.000000\par
+50%\tab 24.000000\tab 1.370000\tab 1.073768e+05\tab 8.645300e+03\tab 2.906102e+04\tab 1.849900e+02\tab 3.974383e+04\tab 2.636282e+04\tab 2.647710e+03\tab 0.000000\tab 2016.000000\par
+75%\tab 38.000000\tab 1.660000\tab 4.329623e+05\tab 1.110202e+05\tab 1.502069e+05\tab 6.243420e+03\tab 1.107834e+05\tab 8.333767e+04\tab 2.202925e+04\tab 132.500000\tab 2017.000000\par
+max\tab 52.000000\tab 3.250000\tab 6.250565e+07\tab 2.274362e+07\tab 2.047057e+07\tab 2.546439e+06\tab 1.937313e+07\tab 1.338459e+07\tab 5.719097e+06\tab 551693.650000\tab 2018.000000\par
+We can see all columns having count 18249. Looks like it doesn't contain missing values\par
+df.isnull().sum()  # Will show you null count for each column, but will not count Zeros(0) as null\par
+Unnamed: 0      0\par
+Date            0\par
+AveragePrice    0\par
+Total Volume    0\par
+4046            0\par
+4225            0\par
+4770            0\par
+Total Bags      0\par
+Small Bags      0\par
+Large Bags      0\par
+XLarge Bags     0\par
+type            0\par
+year            0\par
+region          0\par
+dtype: int64\par
+We can see that no missing values exist in dataset, that's great!\par
+\cf4\highlight5\fs48 HR Analytics Project- Understanding the Attrition in HR\par
+
+\pard\cbpat5\widctlpar\sa240\qc\cf1\highlight0\fs28\par
+
+\pard\cbpat5\widctlpar\sa240 Project Description\par
+\cf4\b0\fs22 Every year a lot of companies hire a number of employees. The companies invest time and money in training those employees, not just this but there are training programs within the companies for their existing employees as well. The aim of these programs is to increase the effectiveness of their employees. But where HR Analytics fit in this? and is it just about improving the performance of employees?\par
+
+\pard\cbpat5\widctlpar\sb435\b HR Analytics\b0\par
+
+\pard\cbpat5\widctlpar Human resource analytics (HR analytics) is an area in the field of analytics that refers to applying analytic processes to the human resource department of an organization in the hope of improving employee performance and therefore getting a better return on investment. HR analytics does not just deal with gathering data on employee efficiency. Instead,\~\b it aims to provide insight into each process by gathering data and then using it to make relevant decisions about how to improve these processes.\b0\par
+
+\pard\cbpat5\widctlpar\sb435\b Attrition in HR\b0\par
+
+\pard\cbpat5\widctlpar Attrition in human resources refers to the gradual loss of employees overtime. In general, relatively high attrition is problematic for companies. HR professionals often assume a leadership role in designing company compensation programs, work culture, and motivation systems that help the organization retain top employees.\par
+
+\pard\cbpat5\widctlpar\sb435 How does Attrition affect companies? and how does HR Analytics help in analyzing attrition? We will discuss the first question here and for the second question, we will write the code and try to understand the process step by step.\par
+\b Attrition affecting Companies\b0\par
+
+\pard\cbpat5\widctlpar A major problem in high employee attrition is its cost to an organization. Job postings, hiring processes, paperwork, and new hire training are some of the common expenses of losing employees and replacing them. Additionally, regular employee turnover prohibits your organization from increasing its collective knowledge base and experience over time. This is especially concerning if your business is customer-facing, as customers often prefer to interact with familiar people. Errors and issues are more likely if you constantly have new workers.\par
+
+\pard\cbpat5\widctlpar\sa240\cf1\b\fs28\par
+HR Analytics\par
+\par
+ANSWER - Human resource analytics (HR analytics) is an area in the field of analytics that refers to applying analytic processes to the human resource department of an organization in the hope of improving employee performance and therefore getting a better return on investment. HR analytics does not just deal with gathering data on employee efficiency. Instead, it aims to provide insight into each process by gathering data and then using it to make relevant decisions about how to improve these processes.\par
+\par
+Attrition in HR\par
+\par
+Attrition in human resources refers to the gradual loss of employees over time. In general, relatively high attrition is problematic for companies. HR professionals often assume a leadership role in designing company compensation programs, work culture and motivation systems that help the organization retain top employees.\par
+\par
+How does Attrition affect companies? and how does HR Analytics help in analyzing attrition? We will discuss the first question here and for the second question we will write the code and try to understand the process step by step.\par
+\par
+Attrition affecting Companies\par
+\par
+A major problem in high employee attrition is its cost to an organization. Job postings, hiring processes, paperwork and new hire training are some of the common expenses of losing employees and replacing them. Additionally, regular employee turnover prohibits your organization from increasing its collective knowledge base and experience over time. This is especially concerning if your business is customer facing, as customers often prefer to interact with familiar people. Errors and issues are more likely if you constantly have new workers.\par
+\par
+Hope the basics made sense. Let\rquote s move on to coding and try finding out how HR Analytics help in understanding attrition.\par
+\par
+Introduction\par
+In order to start with exercise, I have used IBM HR Analytics Employee Attrition & Performance Dataset, which was downloaded from Kaggle. The dataset includes features like Age, Employee Role, Daily Rate, Job Satisfaction, Years At Company, Years In Current Role etc. For this exercise, we will try to study the factors that lead to employee attrition. This is a fictional data set created by IBM data scientists.\par
+\par
+Let\rquote s get start with the work.\par
+\par
+Data Preparation : Load, Clean and Format\par
+#Load the data\par
+hr_data = pd.read_csv("HR-Employee-Attrition.csv")\par
+hr_data.head()\par
+\par
+HR Data Snapshot\par
+#Missing values check\par
+hr_data.isnull().sum()\par
+\par
+Missing values\par
+Luckily we don\rquote t have any missing values and from the above HR data snapshot it also looks like we don\rquote t need to format the data.\par
+\par
+Data Analysis\par
+Let\rquote s have a look at the data and see how features are contributing in the data and in attrition of employees. We need to first check the data type of the features, why? Because we can only see the distribution of numerical/continuous values in a dataset. In order to take a peak into categorical/object values we have to bind them with a numeric variable and then you will be able to see their relevance to the dataset or you can replace the categorical variable with dummies.\par
+\par
+#Check the structure of dataset\par
+hr_data.dtypes\par
+\par
+Structure of HR Data\par
+For this exercise, our aim is to predict the employee attrition and it is important to see which variables are contributing the most in attrition. But before that we need to know if the variables are correlated if they are, we might want to avoid those in model building process.\par
+\par
+There are many continuous variables, we can have a look at their distribution and create a grid of pair plots but that would be too much code to see the correlation as there are a lot variables. Rather, we can create a seaborn heatmap of numeric variables and see the correlation. The variables which are not poorly correlated(i.e correlation value tend towards 0), we will pick those variables and move forward with them and will leave the ones which are strongly correlated(i.e correlation value tend towards be 1).\par
+\fs48\par
+\fs36\par
+
+\pard\cbpat5\widctlpar\sa240\qc\cf0\b0\fs22\par
+
+\pard\cbpat5\widctlpar\sa240\f1\fs28\lang9\par
+}
+ 
