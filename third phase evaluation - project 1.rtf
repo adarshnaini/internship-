@@ -1,0 +1,646 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\froman\fprq2\fcharset0 Times New Roman;}{\f2\fswiss\fprq2\fcharset0 Calibri;}{\f3\fswiss\fprq2 Arial;}{\f4\froman\fprq2\fcharset2 Symbol;}{\f5\fnil\fcharset1 Segoe UI Symbol;}{\f6\fnil\fcharset1 Segoe UI Symbol;}{\f7\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red18\green54\blue84;\red0\green0\blue255;\red0\green138\blue188;\red0\green0\blue0;\red41\green41\blue41;\red34\green34\blue34;\red51\green51\blue51;\red255\green255\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+{\*\generator Riched20 10.0.18362}\viewkind4\uc1 
+\pard\cbpat8\widctlpar\sa240\qc\cf1\b\f0\fs36 Census Income\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\cf0\b0\fs22 This data was extracted from the\~{\f1\fs24{\field{\*\fldinst{HYPERLINK "http://www.census.gov/en.html"}}{\fldrslt{\ul\cf2\cf3\ul\f0\fs22 1994 Census bureau database}}}}\f0\fs22\~by Ronny Kohavi and Barry Becker (Data Mining and Visualization, Silicon Graphics). A set of reasonably clean records was extracted using the following conditions: ((AAGE>16) && (AGI>100) && (AFNLWGT>1) && (HRSWK>0)).\~\b\i The prediction task is to determine whether a person makes over $50K a year.\b0\par
+
+\pard\cbpat8\keep\keepn\widctlpar\s2\sb480\sa240\sl252\slmult1\cf4\kerning2\b\i0\fs24 Description of fnlwgt (final weight)\par
+
+\pard\cbpat8\widctlpar\sb158\sa158\cf0\kerning0\b0\fs22 The weights on the Current Population Survey (CPS) files are controlled to independent estimates of the civilian non-institutional population of the US. These are prepared monthly for us by Population Division here at the Census Bureau. We use 3 sets of controls. These are:\par
+
+\pard\cbpat8 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\widctlpar\fi-360\li720 A single cell estimate of the population 16+ for each state.\par
+{\pntext\f0 2.\tab}Controls for Hispanic Origin by age and sex.\par
+{\pntext\f0 3.\tab}Controls by Race, age and sex.\par
+
+\pard\cbpat8\widctlpar\sb158\sa158 We use all three sets of controls in our weighting program and "rake" through them 6 times so that by the end we come back to all the controls we used. The term estimate refers to population totals derived from CPS by creating "weighted tallies" of any specified socio-economic characteristics of the population. People with similar demographic characteristics should have similar weights. There is one important caveat to remember about this statement. That is that since the CPS sample is actually a collection of 51 state samples, each with its own probability of selection, the statement only applies within state.\par
+ANSWER - First in every machine learning project we need to understand the problem statement if i talk about this project problem statement [This data was extracted from the 1994 Census bureau database by Ronny Kohavi and Barry Becker (Data Mining and Visualization, Silicon Graphics). A set of reasonably clean records was extracted using the following conditions: ((AAGE>16) && (AGI>100) && (AFNLWGT>1) && (HRSWK>0)). The prediction task is to determine whether a person makes over $50K a year.]\par
+\par
+Importing Required Library-\par
+\par
+\par
+Census Income Project-\par
+\par
+In this dataset we have 14 independent variable and 1 dependent variable.\par
+\par
+Independent Variable-\par
+\par
+Age,Workclass,Fnlwgt,Education,Education_num,Marital_status,Occupation,Relationship,Race,Sex,Capital_gain,Capital_loss,Hours_per_week,Native_country\par
+\par
+These are the input or we can say independent variables\par
+These are the inputs or i can say dependent variables\par
+Dependent Variable or Target Variable\par
+\par
+\par
+This is my dependent variable which shows if the person has more then 50k income or less then 50k income.\par
+Before going to direct machine learning part we need to do some statistical analysis and EDA.\par
+\par
+First i will use describe function that will show me the spread of data how much is my min,std,mean,max value. So i can understand my data and if there is some -ve value that shoul not be there. example- Like we have column education num, Hours per week so these value can\rquote t be -ve so if there were some values that were -ve i might filter them.\par
+\par
+\par
+As we can see the min age of people in this dataset is 17 and the max-age is 90 this seems to be an outlier and the 75% of people age is 48 and the education_num has a min value of 1 and max is 16 that seems to be quite normal like this we can analyze other columns.\par
+There are no null values in this dataset\par
+\par
+\par
+You can use this code data.isna().sum() for checking if there is some null values or not and if you just want to see total null values you can use data.isna().sum().sum()\par
+Now we have to analyze our object columns\par
+\par
+\par
+This code is showing how many unique values we have in each column this code really helps you to analyze like if you want to do EDA by plotting so if there is a more unique value you need to increase the size of the figure so you can clearly see each and every value. and for machine learning, you can see if there are fewer unique values like income, marital status, relationship, race, Workcalss we can use OrdinalEncoder if unique values are large i can use label encoder or hashtag encoder or Onehot Encoder.\par
+EDA-\par
+Univariate Analysis\par
+For univariate analysis we can use countplot to analyze which value has the high count like we have education_num so from this we can see which education_num mostly people have. example-if 10 has the high count so we can say mostly people have a bachelor degree.\par
+\par
+\par
+The variable col have all the obejct columns and in the second line of code i am using a for loop so it will draw a countplot for all object columns.\par
+1-From workclass Private has the highest count and other\par
+ \par
+ Private 22696\par
+ \par
+ Self-emp-not-inc 2541\par
+ \par
+ Local-gov 2093\par
+ \par
+ ? 1836\par
+ \par
+ State-gov 1297\par
+ \par
+ Self-emp-inc 1116\par
+ \par
+ Federal-gov 960\par
+ \par
+ Without-pay 14\par
+ \par
+ Never-worked 7\par
+ \par
+ 2-From education the count of every class is\par
+ \par
+ HS-grad 10501\par
+ \par
+ Some-college 7291\par
+ \par
+ Bachelors 5354\par
+ \par
+ Masters 1723\par
+ \par
+ Assoc-voc 1382\par
+ \par
+ 11th 1175\par
+ \par
+ Assoc-acdm 1067\par
+ \par
+ 10th 933\par
+ \par
+ 7th-8th 646\par
+ \par
+ Prof-school 576\par
+ \par
+ 9th 514\par
+ \par
+ 12th 433\par
+ \par
+ Doctorate 413\par
+ \par
+ 5th-6th 333\par
+ \par
+ 1st-4\par
+From upper graphs we can easily see which value have high count like in this dataset we have more peoples who have a salary of less then 50k and from education i can say there are more peoples who have did HS-Grad and very less people who have only did pre-school. like this we can do analysis\par
+Univariate Analysis To Check Distribution Of numerical columns-\par
+\par
+\par
+For plotting the distribution plot I am using distplot from seaborn and in the upper code I have a for loop that will draw one by one every numerical column\par
+
+\pard\widctlpar\sa160\sl252\slmult1\kerning2\f2\par
+\par
+
+\pard\cbpat8\widctlpar\sa240\qc\cf1\kerning0\b\f0\fs36 Rainfall Weather Forecasting\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\sa160\cf5\fs22 Weather forecasting\b0\~is the application of science and technology to predict the\~\b conditions of the atmosphere\b0\~for a given\~\b location\~\b0 and\~\b time\b0 .\~\b Weather forecasts\~\b0 are made by collecting\~\b quantitative data\~\b0 about the\~\b current state of the atmosphere\b0\~at a given place and using meteorology to project how the atmosphere will change.\cf4\par
+
+\pard\cbpat8\widctlpar\cf6 Rain Dataset is to predict whether or not it will rain tomorrow. The Dataset contains about 10 years of daily weather observations of different locations in Australia. \b Here, predict two things:\cf4\b0\par
+\~\par
+\cf6\b 1. Problem Statement:\~\cf4\b0\par
+\cf6 a) Design a predictive model with the use of machine learning algorithms to forecast \b whether or not it will rain tomorrow\b0 .\cf4\par
+
+\pard\cbpat8\widctlpar\sa160 b)\~ \cf6 Design a predictive model with the use of machine learning algorithms to \b predict how much rainfall could be there\b0 .\cf4\par
+
+\pard\widctlpar\line\cf0\par
+
+\pard\cbpat8\widctlpar\cf6\b Dataset Description:\cf4\b0\par
+\cf6 Number of columns:\~\b 23\cf4\b0\par
+
+\pard\widctlpar\line\cf0\par
+
+\pard\cbpat8\widctlpar\sa160\cf4 Date\~ - The date of observation\par
+Location\~ -The common name of the location of the weather station\par
+MinTemp\~ -The minimum temperature in degrees celsius\par
+MaxTemp -The maximum temperature in degrees celsius\par
+Rainfall\~ -The amount of rainfall recorded for the day in mm\par
+Evaporation\~ -The so-called Class A pan evaporation (mm) in the 24 hours to 9am\par
+Sunshine\~ -The number of hours of bright sunshine in the day.\par
+WindGustDi r- The direction of the strongest wind gust in the 24 hours to midnight\par
+WindGustSpeed -The speed (km/h) of the strongest wind gust in the 24 hours to midnight\par
+WindDir9am -Direction of the wind at 9am\par
+WindDir3pm -Direction of the wind at 3pm\par
+WindSpeed9am -Wind speed (km/hr) averaged over 10 minutes prior to 9am\par
+WindSpeed3pm -Wind speed (km/hr) averaged over 10 minutes prior to 3pm\par
+Humidity9am -Humidity (percent) at 9am\par
+Humidity3pm -Humidity (percent) at 3pm\par
+Pressure9am -Atmospheric pressure (hpa) reduced to mean sea level at 9am\par
+Pressure3pm -Atmospheric pressure (hpa) reduced to mean sea level at 3pm\par
+Cloud9am - Fraction of sky obscured by cloud at 9am.\~\par
+Cloud3pm -Fraction of sky obscured by cloud\~\par
+Temp9am-Temperature (degrees C) at 9am\par
+Temp3pm -Temperature (degrees C) at 3pm\par
+RainToday -Boolean: 1 if precipitation (mm) in the 24 hours to 9am exceeds 1mm, otherwise 0\par
+RainTomorrow -The amount of next day rain in mm. Used to create response variable . A kind of measure of the "risk".\par
+illennia and formally since the 19th century.\par
+\par
+ANSWER - Weather forecasts are made by collecting quantitative data about the current state of the atmosphere, land, and ocean and using meteorology to project how the atmosphere will change at a given place.\par
+\par
+Once calculated manually based mainly upon changes in barometric pressure, current weather conditions, and sky conditions or cloud cover, weather forecasting now relies on computer-based models that take many atmospheric factors into account.[1] Human input is still required to pick the best possible model to base the forecast upon, which involves pattern recognition skills, teleconnections, knowledge of model performance, and knowledge of model biases.\par
+\par
+The inaccuracy of forecasting is due to the chaotic nature of the atmosphere, the massive computational power required to solve the equations that describe the atmosphere, the land, and the ocean, the error involved in measuring the initial conditions, and an incomplete understanding of atmospheric and related processes. Hence, forecasts become less accurate as the difference between the current time and the time for which the forecast is being made (the range of the forecast) increases. The use of ensembles and model consensus helps narrow the error and provide confidence in the forecast.\par
+\par
+There is a vast variety of end uses for weather forecasts. Weather warnings are important because they are used to protect lives and property. Forecasts based on temperature and precipitation are important to agriculture, and therefore to traders within commodity markets. Temperature forecasts are used by utility companies to estimate demand over coming days.\par
+\par
+On an everyday basis, many people use weather forecasts to determine what to wear on a given day. Since outdoor activities are severely curtailed by heavy rain, snow and wind chill, forecasts can be used to plan activities around these events, and to plan ahead and survive them.\par
+\par
+Weather forecasting is a part of the economy. For example in 2009, the US spent approximately $5.8 billion on it, producing benefits estimated at six times as much.[2]\par
+\par
+History\par
+Main article: Timeline of meteorology\par
+Ancient forecasting\par
+In 650 BC, the Babylonians predicted the weather from cloud patterns as well as astrology. In about 350 BC, Aristotle described weather patterns in Meteorologica.[3] Later, Theophrastus compiled a book on weather forecasting, called the Book of Signs.[4] Chinese weather prediction lore extends at least as far back as 300 BC,[5] which was also around the same time ancient Indian astronomers developed weather-prediction methods.[6] In New Testament times, Jesus himself referred to deciphering and understanding local weather patterns, by saying, "When evening comes, you say, 'It will be fair weather, for the sky is red', and in the morning, 'Today it will be stormy, for the sky is red and overcast.' You know how to interpret the appearance of the sky, but you cannot interpret the signs of the times."[7]\par
+\par
+In 904 AD, Ibn Wahshiyya's Nabatean Agriculture, translated into Arabic from an earlier Aramaic work,[8] discussed the weather forecasting of atmospheric changes and signs from the planetary astral alterations; signs of rain based on observation of the lunar phases; and weather forecasts based on the movement of winds.[9]\par
+\par
+Ancient weather forecasting methods usually relied on observed patterns of events, also termed pattern recognition. For example, it was observed that if the sunset was particularly red, the following day often brought fair weather. This experience accumulated over the generations to produce weather lore. However, not all[which?] of these predictions prove reliable, and many of them have since been found not to stand up to rigorous statistical testing.[10]\par
+\par
+Modern methods\par
+\par
+The Royal Charter sank in an October 1859 storm, stimulating the establishment of modern weather forecasting.\par
+It was not until the invention of the electric telegraph in 1835 that the modern age of weather forecasting began.[11] Before that, the fastest that distant weather reports could travel was around 160 kilometres per day (100 mi/d), but was more typically 60\f3\endash 120 kilometres per day (40\endash 75 mi/day) (whether by land or by sea).[12][13] By the late 1840s, the telegraph allowed reports of weather conditions from a wide area to be received almost instantaneously,[14] allowing forecasts to be made from knowledge of weather conditions further upwind.\par
+\par
+The two men credited with the birth of forecasting as a science were an officer of the Royal Navy Francis Beaufort and his prot\f0\'e9g\'e9 Robert FitzRoy. Both were influential men in British naval and governmental circles, and though ridiculed in the press at the time, their work gained scientific credence, was accepted by the Royal Navy, and formed the basis for all of today's weather forecasting knowledge.[15][16]\par
+\par
+Beaufort developed the Wind Force Scale and Weather Notation coding, which he was to use in his journals for the remainder of his life. He also promoted the development of reliable tide tables around British shores, and with his friend William Whewell, expanded weather record-keeping at 200 British coast guard stations.\par
+\par
+Robert FitzRoy was appointed in 1854 as chief of a new department within the Board of Trade to deal with the collection of weather data at sea as a service to mariners. This was the forerunner of the modern Meteorological Office.[16] All ship captains were tasked with collating data on the weather and computing it, with the use of tested instruments that were loaned for this purpose.[17]\par
+\par
+\par
+Weather map of Europe, December 10, 1887\par
+A storm in October 1859 that caused the loss of the Royal Charter inspired FitzRoy to develop charts to allow predictions to be made, which he called "forecasting the weather", thus coining the term "weather forecast".[17] Fifteen land stations were established to use the telegraph to transmit to him daily reports of weather at set times leading to the first gale warning service. His warning service for shipping was initiated in February 1861, with the use of telegraph communications. The first daily weather forecasts were published in The Times in 1861.[16] In the following year a system was introduced of hoisting storm warning cones at the principal ports when a gale was expected.[18] The "Weather Book" which FitzRoy published in 1863 was far in advance of the scientific opinion of the time.\par
+\par
+As the electric telegraph network expanded, allowing for the more rapid dissemination of warnings, a national observational network was developed, which could then be used to provide synoptic analyses. To shorten detailed weather reports into more affordable telegrams, senders encoded weather information in telegraphic code, such as the one developed by the U.S. Army Signal Corps.[19] Instruments to continuously record variations in meteorological parameters using photography were supplied to the observing stations from Kew Observatory \f3\endash  these cameras had been invented by Francis Ronalds in 1845 and his barograph had earlier been used by FitzRoy.[20][21]\par
+\par
+To convey accurate information, it soon became necessary to have a standard vocabulary describing clouds; this was achieved by means of a series of classifications first achieved by Luke Howard in 1802, and standardized in the International Cloud Atlas of 1896.\par
+\par
+Numerical prediction\par
+Main article: History of numerical weather prediction\par
+\par
+The difference between the forecast and the actual weather outcome for forecasts 3, 5, 7, and 10 days in advance.\par
+It was not until the 20th century that advances in the understanding of atmospheric physics led to the foundation of modern numerical weather prediction. In 1922, English scientist Lewis Fry Richardson published "Weather Prediction By Numerical Process",[22] after finding notes and derivations he worked on as an ambulance driver in World War I. He described therein how small terms in the prognostic fluid dynamics equations governing atmospheric flow could be neglected, and a finite differencing scheme in time and space could be devised, to allow numerical prediction solutions to be found.\par
+\par
+Richardson envisioned a large auditorium of thousands of people performing the calculations and passing them to others. However, the sheer number of calculations required was too large to be completed without the use of computers, and the size of the grid and time steps led to unrealistic results in deepening systems. It was later found, through numerical analysis, that this was due to numerical instability.[23] The first computerised weather forecast was performed by a team composed of American meteorologists Jule Charney, Philip Duncan Thompson, Larry Gates, and Norwegian meteorologist Ragnar Fj\f0\'f8rtoft, applied mathematician John von Neumann, and ENIAC programmer Klara Dan von Neumann.[24][25][26] Practical use of numerical weather prediction began in 1955,[27] spurred by the development of programmable electronic computers.\par
+\par
+Broadcasts\par
+See also: Weather presenter\par
+The first ever daily weather forecasts were published in The Times on August 1, 1861, and the first weather maps were produced later in the same year.[28] In 1911, the Met Office began issuing the first marine weather forecasts via radio transmission. These included gale and storm warnings for areas around Great Britain.[29] In the United States, the first public radio forecasts were made in 1925 by Edward B. "E.B." Rideout, on WEEI, the Edison Electric Illuminating station in Boston.[30] Rideout came from the U.S. Weather Bureau, as did WBZ weather forecaster G. Harold Noyes in 1931.\par
+\par
+\par
+BBC television weather chart for November 13, 1936\par
+The world's first televised weather forecasts, including the use of weather maps, were experimentally broadcast by the BBC in November 1936.[31] This was brought into practice in 1949, after World War II.[31] George Cowling gave the first weather forecast while being televised in front of the map in 1954.[32][33] In America, experimental television forecasts were made by James C. Fidler in Cincinnati in either 1940 or 1947[clarification needed] on the DuMont Television Network.[30][34] In the late 1970s and early 1980s, John Coleman, the first weatherman for the American Broadcasting Company (ABC)'s Good Morning America, pioneered the use of on-screen weather satellite data and computer graphics for television forecasts.[35] In 1982, Coleman partnered with Landmark Communications CEO Frank Batten to launch The Weather Channel (TWC), a 24-hour cable network devoted to national and local weather reports. Some weather channels have started broadcasting on live streaming platforms such as YouTube and Periscope to reach more viewers.\par
+\par
+Numerical weather prediction\par
+\par
+An example of 500 mbar geopotential height and absolute vorticity prediction from a numerical weather prediction model\par
+Main article: Numerical weather prediction\par
+The basic idea of numerical weather prediction is to sample the state of the fluid at a given time and use the equations of fluid dynamics and thermodynamics to estimate the state of the fluid at some time in the future. The main inputs from country-based weather services are surface observations from automated weather stations at ground level over land and from weather buoys at sea. The World Meteorological Organization acts to standardize the instrumentation, observing practices and timing of these observations worldwide. Stations either report hourly in METAR reports,[36] or every six hours in SYNOP reports.[37] Sites launch radiosondes, which rise through the depth of the troposphere and well into the stratosphere.[38] Data from weather satellites are used in areas where traditional data sources are not available.[39][40][41] Compared with similar data from radiosondes, the satellite data has the advantage of global coverage, but at a lower accuracy and resolution.[42] Meteorological radar provide information on precipitation location and intensity, which can be used to estimate precipitation accumulations over time.[43] Additionally, if a pulse Doppler weather radar is used then wind speed and direction can be determined.[44] These methods, however, leave an in-situ observational gap in the lower atmosphere (from 100 m to 6 km above ground level). To reduce this gap, in the late 1990s weather drones started to be considered for obtaining data from those altitudes. Research has been growing significantly since the 2010s, and weather-drone data may in future be added to numerical weather models.[45][46]\par
+\par
+\par
+Modern weather predictions aid in timely evacuations and potentially save lives and prevent property damage\par
+Commerce provides pilot reports along aircraft routes,[47] and ship reports along shipping routes. Research flights using reconnaissance aircraft fly in and around weather systems of interest such as tropical cyclones.[48][49] Reconnaissance aircraft are also flown over the open oceans during the cold season into systems that cause significant uncertainty in forecast guidance, or are expected to be of high impact three\f3\endash seven days into the future over the downstream continent.[50]\par
+\par
+Models are initialized using this observed data. The irregularly spaced observations are processed by data assimilation and objective analysis methods, which perform quality control and obtain values at locations usable by the model's mathematical algorithms (usually an evenly spaced grid). The data are then used in the model as the starting point for a forecast.[51] Commonly, the set of equations used to predict the physics and dynamics of the atmosphere are called primitive equations. These are initialized from the analysis data and rates of change are determined. The rates of change predict the state of the atmosphere a short time into the future. The equations are then applied to this new atmospheric state to find new rates of change, which predict the atmosphere at a yet further time into the future. This time stepping procedure is continually repeated until the solution reaches the desired forecast time.\par
+\par
+The length of the time step chosen within the model is related to the distance between the points on the computational grid, and is chosen to maintain numerical stability.[52] Time steps for global models are on the order of tens of minutes,[53] while time steps for regional models are between one and four minutes.[54] The global models are run at varying times into the future. The Met Office's Unified Model is run six days into the future,[55] the European Centre for Medium-Range Weather Forecasts model is run out to 10 days into the future,[56] while the Global Forecast System model run by the Environmental Modeling Center is run 16 days into the future.[57] The visual output produced by a model solution is known as a prognostic chart, or prog.[58] The raw output is often modified before being presented as the forecast. This can be in the form of statistical techniques to remove known biases in the model, or of adjustment to take into account consensus among other numerical weather forecasts.[59] MOS or model output statistics is a technique used to interpret numerical model output and produce site-specific guidance. This guidance is presented in coded numerical form, and can be obtained for nearly all National Weather Service reporting stations in the United States. As proposed by Edward Lorenz in 1963, long range forecasts, those made at a range of two weeks or more cannot definitively predict the state of the atmosphere, owing to the chaotic nature of the fluid dynamics equations involved. In numerical models, extremely small errors in initial values double roughly every five days for variables such as temperature and wind velocity.[60]\par
+\par
+Essentially, a model is a computer program that produces meteorological information for future times at given locations and altitudes. Within any modern model is a set of equations, known as the primitive equations, used to predict the future state of the atmosphere.[61] These equations\emdash along with the ideal gas law\emdash are used to evolve the density, pressure, and potential temperature scalar fields and the velocity vector field of the atmosphere through time. Additional transport equations for pollutants and other aerosols are included in some primitive-equation mesoscale models as well.[62] The equations used are nonlinear partial differential equations, which are impossible to solve exactly through analytical methods,[63] with the exception of a few idealized cases.[64] Therefore, numerical methods obtain approximate solutions. Different models use different solution methods: some global models use spectral methods for the horizontal dimensions and finite difference methods for the vertical dimension, while regional and other global models usually use finite-difference methods in all three dimensions.[63]\par
+\par
+Techniques\par
+Persistence\par
+The simplest method of forecasting the weather, persistence, relies upon today's conditions to forecast tomorrow's. This can be a valid way of forecasting the weather when it is in a steady state, such as during the summer season in the tropics. This method strongly depends upon the presence of a stagnant weather pattern. Therefore, when in a fluctuating pattern, it becomes inaccurate. It can be useful in both short- and long-range forecast|long range forecasts.[65]\par
+\par
+Use of a barometer\par
+Measurements of barometric pressure and the pressure tendency (the change of pressure over time) have been used in forecasting since the late 19th century.[66] The larger the change in pressure, especially if more than 3.5 hPa (2.6 mmHg), the larger the change in weather can be expected. If the pressure drop is rapid, a low pressure system is approaching, and there is a greater chance of rain. Rapid pressure rises are associated with improving weather conditions, such as clearing skies.[67]\par
+\par
+Looking at the sky\par
+\par
+Marestail shows moisture at high altitude, signalling the later arrival of wet weather.\par
+Along with pressure tendency, the condition of the sky is one of the more important parameters used to forecast weather in mountainous areas. Thickening of cloud cover or the invasion of a higher cloud deck is indicative of rain in the near future. High thin cirrostratus clouds can create halos around the sun or moon, which indicates an approach of a warm front and its associated rain.[68] Morning fog portends fair conditions, as rainy conditions are preceded by wind or clouds that prevent fog formation. The approach of a line of thunderstorms could indicate the approach of a cold front. Cloud-free skies are indicative of fair weather for the near future.[69] A bar can indicate a coming tropical cyclone. The use of sky cover in weather prediction has led to various weather lore over the centuries.[10]\par
+\par
+Nowcasting\par
+Main article: Nowcasting (meteorology)\par
+The forecasting of the weather within the next six hours is often referred to as nowcasting.[70] In this time range it is possible to forecast smaller features such as individual showers and thunderstorms with reasonable accuracy, as well as other features too small to be resolved by a computer model. A human given the latest radar, satellite and observational data will be able to make a better analysis of the small scale features present and so will be able to make a more accurate forecast for the following few hours.[71] However, there are now expert systems using those data and mesoscale numerical model to make better extrapolation, including evolution of those features in time. Accuweather is known for a Minute-Cast, which is a minute-by-minute precipitation forecast for the next two hours.\par
+\par
+Use of forecasting models\par
+\par
+An example of 500 mbar geopotential height prediction from a numerical weather prediction model\par
+In the past, the human forecaster was responsible for generating the entire weather forecast based upon available observations.[72] Today, human input is generally confined to choosing a model based on various parameters, such as model biases and performance.[73] Using a consensus of forecast models, as well as ensemble members of the various models, can help reduce forecast error.[74] However, regardless how small the average error becomes with any individual system, large errors within any particular piece of guidance are still possible on any given model run.[75] Humans are required to interpret the model data into weather forecasts that are understandable to the end user. Humans can use knowledge of local effects that may be too small in size to be resolved by the model to add information to the forecast. While increasing accuracy of forecasting models implies that humans may no longer be needed in the forecasting process at some point in the future, there is currently still a need for human intervention\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning2\f2\par
+
+\pard\cbpat8\widctlpar\sa240\qc\cf1\kerning0\b\f0\fs36 Insurance Claim Fraud Detection\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\sb240\cf7\b0\fs22 Insurance fraud is a huge problem in the industry. It's difficult to identify fraud claims. Machine Learning is in a unique position to help the Auto Insurance industry with this problem.\cf4\par
+\cf7 In this project, you are provided a dataset which has the details of the insurance policy along with the customer details. It also has the details of the accident on the basis of which the claims have been made.\~\cf4\par
+
+\pard\cbpat8\widctlpar\cf7 In this example, you will be working with some auto insurance data to demonstrate how you can create a predictive model that predicts if an insurance claim is fraudulent or not.\~\cf4\par
+
+\pard\widctlpar\sa160\sl252\slmult1\cf0\kerning2\f2\par
+
+\pard\cbpat8\widctlpar\sa240\kerning0\b\f0\fs28 Independent Variables\par
+
+\pard\cbpat8 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\widctlpar\fi-360\li720\sa240\b0\fs22 months_as_customer: Number of months of patronage\par
+{\pntext\f0 2.\tab}age: the length of time a customer has lived or a thing has existed\par
+{\pntext\f0 3.\tab}policy_number: It is a unique id given to the customer, to track the subscription status and other details of customer\par
+{\pntext\f0 4.\tab}policy_bind_date:date which document that is given to customer after we accept your proposal for insurance\par
+{\pntext\f0 5.\tab}policy_state: This identifies who is the insured, what risks or property are covered, the policy limits, and the policy period\par
+{\pntext\f0 6.\tab}policy_csl: is basically Combined Single Limit\par
+{\pntext\f0 7.\tab}policy_deductable: the amount of money that a customer is responsible for paying toward an insured loss\par
+{\pntext\f0 8.\tab}policy_annual_premium: This means the amount of Regular Premium payable by the Policyholder in a Policy Year\par
+{\pntext\f0 9.\tab}umbrella_limit: This means extra insurance that provides protection beyond existing limits and coverages of other policies\par
+{\pntext\f0 10.\tab}insured_zip: It is the zip code where the insurance was made\par
+{\pntext\f0 11.\tab}insured_sex: This refres to either of the two main categories (male and female) into which customer are divided on the basis of their reproductive functions\par
+{\pntext\f0 12.\tab}insured_education_level: This refers to the Level of education of the customer\par
+{\pntext\f0 13.\tab}insured_occupation: This refers Occupation of the customer\par
+{\pntext\f0 14.\tab}insured_hobbies: This refers to an activity done regularly by customer in his/her leisure time for pleasure.\par
+{\pntext\f0 15.\tab}insured_relationship: This whether customer is: single; or. married; or. in a de facto relationship (that is, living together but not married); or. in a civil partnership\par
+{\pntext\f0 16.\tab}capital-gains: This refers to profit accrued due to insurance premium\par
+{\pntext\f0 17.\tab}capital-loss: This refers to the losses incurred due to insurance claims\par
+{\pntext\f0 18.\tab}incident_date: This refers to the date which claims where made by customers\par
+{\pntext\f0 19.\tab}incident_type: This refers to the type of claim/vehicle damage made by customer\par
+{\pntext\f0 20.\tab}collision_type: This refers to the area of damage on the vehicle\par
+{\pntext\f0 21.\tab}incident_severity: This refers to the extent/level of damage\par
+{\pntext\f0 22.\tab}authorities_contacted: This refers to the government agencies that were contacted after damage\par
+{\pntext\f0 23.\tab}incident_state: This refers to the state at which the accident happened\par
+{\pntext\f0 24.\tab}incident_city: This refers to the city at which the accident happened\par
+{\pntext\f0 25.\tab}1ncident_location: This refers to the location at which the accident happened\par
+{\pntext\f0 26.\tab}incident_hour_of_the_day: The period of the day which accident took place\par
+{\pntext\f0 27.\tab}number_of_vehicles_involved: This refers to number of vehicles involved the accident\par
+{\pntext\f0 28.\tab}property_damage: This refers to whether property was damaged or not\par
+{\pntext\f0 29.\tab}bodily_injuries: This refers to injuries sustained\par
+{\pntext\f0 30.\tab}witnesses: This refers to the number of witnesses involved\par
+{\pntext\f0 31.\tab}police_report_available: This refers to whether the report on damage was documented or not\par
+{\pntext\f0 32.\tab}total_claim_amount: This refers to the financial implications involved in claims\par
+{\pntext\f0 33.\tab}injury_claim: This refers to physical injuries sustained\par
+{\pntext\f0 34.\tab}property_claim: This refers to property damages during incident\par
+{\pntext\f0 35.\tab}vehicle_claim: This refers to property damages during incident\par
+{\pntext\f0 36.\tab}auto_make: This refers to the make of the vehicle\par
+{\pntext\f0 37.\tab}auto_model: This refers to the model of the vehicle\par
+{\pntext\f0 38.\tab}auto_year: This refers to the year which the vehicle was manufactured\par
+{\pntext\f0 39.\tab}_c39:\par
+
+\pard\cbpat8 
+{\pntext\f0 40.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart40\pndec{\pntxta.}}
+\widctlpar\fi-360\li720\sb100\sa100 fraud_reported\cf4\par
+
+\pard\cbpat8 
+{\pntext\f0 41.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart40\pndec{\pntxta.}}
+\fi-360\li720\sb100\sa100\cf0\par
+
+\pard\cbpat8\widctlpar\sb158\sa158\par
+answer - fig = plt.figure(figsize=(10,6))\par
+ax = (df['incident_type'].value_counts()*100.0 /len(df))\\\par
+.plot.pie(autopct='%.1f%%', labels = ['Parked Car', 'Single Vehile Collision', 'Multi-vehicle Collision', 'Vehicle Theft'],\par
+         fontsize=12) \par
+\par
+fig = plt.figure(figsize=(10,6))\par
+ax = (df['authorities_contacted'].value_counts()*100.0 /len(df))\\\par
+.plot.pie(autopct='%.1f%%', labels = ['Police', 'Fire', 'Other', 'None', 'Ambulance'],\par
+         fontsize=12) \par
+\par
+fig = plt.figure(figsize=(10,6))\par
+ax = sns.countplot(x='auto_make', data=df)\par
+ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")\par
+plt.show()\par
+\par
+fig = plt.figure(figsize=(10,6))\par
+ax = (df['incident_severity'].value_counts()*100.0 /len(df))\\\par
+.plot.pie(autopct='%.1f%%', labels = ['Major Damage', 'Total Loss', 'Minor Damage', 'Trivial Damage'],\par
+         fontsize=12)  \par
+\par
+fig = plt.figure(figsize=(10,6))\par
+ax = sns.countplot(x='insured_hobbies', data=df)\par
+ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")\par
+plt.show()\par
+\par
+df["insured_occupation"].value_counts()\par
+machine-op-inspct    93\par
+prof-specialty       85\par
+tech-support         78\par
+exec-managerial      76\par
+sales                76\par
+craft-repair         74\par
+transport-moving     72\par
+priv-house-serv      71\par
+other-service        71\par
+armed-forces         69\par
+adm-clerical         65\par
+protective-serv      63\par
+handlers-cleaners    54\par
+farming-fishing      53\par
+Name: insured_occupation, dtype: int64\par
+plt.style.use('fivethirtyeight')\par
+fig = plt.figure(figsize=(10,6))\par
+ax= df.groupby('auto_make').vehicle_claim.count().plot.bar(ylim=0)\par
+ax.set_ylabel('Vehicle claim')\par
+ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")\par
+plt.show()\par
+\par
+plt.style.use('fivethirtyeight')\par
+fig = plt.figure(figsize=(10,6))\par
+ax= df.groupby('insured_hobbies').total_claim_amount.count().plot.bar(ylim=0)\par
+ax.set_ylabel('Total claim amount')\par
+ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")\par
+plt.show()\par
+\par
+Data Processing\par
+Cleaning up the data and prepare it for machine learning model.\par
+\par
+df['fraud_reported'].replace(to_replace='Y', value=1, inplace=True)\par
+df['fraud_reported'].replace(to_replace='N',  value=0, inplace=True)\par
+\par
+df.head()\par
+months_as_customer\tab age\tab policy_number\tab policy_bind_date\tab policy_state\tab policy_csl\tab policy_deductable\tab policy_annual_premium\tab umbrella_limit\tab insured_zip\tab insured_sex\tab insured_education_level\tab insured_occupation\tab insured_hobbies\tab insured_relationship\tab capital-gains\tab capital-loss\tab incident_date\tab incident_type\tab collision_type\tab incident_severity\tab authorities_contacted\tab incident_state\tab incident_city\tab incident_location\tab incident_hour_of_the_day\tab number_of_vehicles_involved\tab property_damage\tab bodily_injuries\tab witnesses\tab police_report_available\tab total_claim_amount\tab injury_claim\tab property_claim\tab vehicle_claim\tab auto_make\tab auto_model\tab auto_year\tab fraud_reported\tab _c39\par
+0\tab 328\tab 48\tab 521585\tab 2014-10-17\tab OH\tab 250/500\tab 1000\tab 1406.91\tab 0\tab 466132\tab MALE\tab MD\tab craft-repair\tab sleeping\tab husband\tab 53300\tab 0\tab 2015-01-25\tab Single Vehicle Collision\tab Side Collision\tab Major Damage\tab Police\tab SC\tab Columbus\tab 9935 4th Drive\tab 5\tab 1\tab YES\tab 1\tab 2\tab YES\tab 71610\tab 6510\tab 13020\tab 52080\tab Saab\tab 92x\tab 2004\tab 1\tab NaN\par
+1\tab 228\tab 42\tab 342868\tab 2006-06-27\tab IN\tab 250/500\tab 2000\tab 1197.22\tab 5000000\tab 468176\tab MALE\tab MD\tab machine-op-inspct\tab reading\tab other-relative\tab 0\tab 0\tab 2015-01-21\tab Vehicle Theft\tab ?\tab Minor Damage\tab Police\tab VA\tab Riverwood\tab 6608 MLK Hwy\tab 8\tab 1\tab ?\tab 0\tab 0\tab ?\tab 5070\tab 780\tab 780\tab 3510\tab Mercedes\tab E400\tab 2007\tab 1\tab NaN\par
+2\tab 134\tab 29\tab 687698\tab 2000-09-06\tab OH\tab 100/300\tab 2000\tab 1413.14\tab 5000000\tab 430632\tab FEMALE\tab PhD\tab sales\tab board-games\tab own-child\tab 35100\tab 0\tab 2015-02-22\tab Multi-vehicle Collision\tab Rear Collision\tab Minor Damage\tab Police\tab NY\tab Columbus\tab 7121 Francis Lane\tab 7\tab 3\tab NO\tab 2\tab 3\tab NO\tab 34650\tab 7700\tab 3850\tab 23100\tab Dodge\tab RAM\tab 2007\tab 0\tab NaN\par
+3\tab 256\tab 41\tab 227811\tab 1990-05-25\tab IL\tab 250/500\tab 2000\tab 1415.74\tab 6000000\tab 608117\tab FEMALE\tab PhD\tab armed-forces\tab board-games\tab unmarried\tab 48900\tab -62400\tab 2015-01-10\tab Single Vehicle Collision\tab Front Collision\tab Major Damage\tab Police\tab OH\tab Arlington\tab 6956 Maple Drive\tab 5\tab 1\tab ?\tab 1\tab 2\tab NO\tab 63400\tab 6340\tab 6340\tab 50720\tab Chevrolet\tab Tahoe\tab 2014\tab 1\tab NaN\par
+4\tab 228\tab 44\tab 367455\tab 2014-06-06\tab IL\tab 500/1000\tab 1000\tab 1583.91\tab 6000000\tab 610706\tab MALE\tab Associate\tab sales\tab board-games\tab unmarried\tab 66000\tab -46000\tab 2015-02-17\tab Vehicle Theft\tab ?\tab Minor Damage\tab None\tab NY\tab Arlington\tab 3041 3rd Ave\tab 20\tab 1\tab NO\tab 0\tab 1\tab NO\tab 6500\tab 1300\tab 650\tab 4550\tab Accura\tab RSX\tab 2009\tab 0\tab NaN\par
+df[['insured_zip']] = df[['insured_zip']].astype(object)\par
+df.describe()\par
+months_as_customer\tab age\tab policy_number\tab policy_deductable\tab policy_annual_premium\tab umbrella_limit\tab capital-gains\tab capital-loss\tab incident_hour_of_the_day\tab number_of_vehicles_involved\tab bodily_injuries\tab witnesses\tab total_claim_amount\tab injury_claim\tab property_claim\tab vehicle_claim\tab auto_year\tab fraud_reported\tab _c39\par
+count\tab 1000.000000\tab 1000.000000\tab 1000.000000\tab 1000.000000\tab 1000.000000\tab 1.000000e+03\tab 1000.000000\tab 1000.000000\tab 1000.000000\tab 1000.00000\tab 1000.000000\tab 1000.000000\tab 1000.00000\tab 1000.000000\tab 1000.000000\tab 1000.000000\tab 1000.000000\tab 1000.000000\tab 0.0\par
+mean\tab 203.954000\tab 38.948000\tab 546238.648000\tab 1136.000000\tab 1256.406150\tab 1.101000e+06\tab 25126.100000\tab -26793.700000\tab 11.644000\tab 1.83900\tab 0.992000\tab 1.487000\tab 52761.94000\tab 7433.420000\tab 7399.570000\tab 37928.950000\tab 2005.103000\tab 0.247000\tab NaN\par
+std\tab 115.113174\tab 9.140287\tab 257063.005276\tab 611.864673\tab 244.167395\tab 2.297407e+06\tab 27872.187708\tab 28104.096686\tab 6.951373\tab 1.01888\tab 0.820127\tab 1.111335\tab 26401.53319\tab 4880.951853\tab 4824.726179\tab 18886.252893\tab 6.015861\tab 0.431483\tab NaN\par
+min\tab 0.000000\tab 19.000000\tab 100804.000000\tab 500.000000\tab 433.330000\tab -1.000000e+06\tab 0.000000\tab -111100.000000\tab 0.000000\tab 1.00000\tab 0.000000\tab 0.000000\tab 100.00000\tab 0.000000\tab 0.000000\tab 70.000000\tab 1995.000000\tab 0.000000\tab NaN\par
+25%\tab 115.750000\tab 32.000000\tab 335980.250000\tab 500.000000\tab 1089.607500\tab 0.000000e+00\tab 0.000000\tab -51500.000000\tab 6.000000\tab 1.00000\tab 0.000000\tab 1.000000\tab 41812.50000\tab 4295.000000\tab 4445.000000\tab 30292.500000\tab 2000.000000\tab 0.000000\tab NaN\par
+50%\tab 199.500000\tab 38.000000\tab 533135.000000\tab 1000.000000\tab 1257.200000\tab 0.000000e+00\tab 0.000000\tab -23250.000000\tab 12.000000\tab 1.00000\tab 1.000000\tab 1.000000\tab 58055.00000\tab 6775.000000\tab 6750.000000\tab 42100.000000\tab 2005.000000\tab 0.000000\tab NaN\par
+75%\tab 276.250000\tab 44.000000\tab 759099.750000\tab 2000.000000\tab 1415.695000\tab 0.000000e+00\tab 51025.000000\tab 0.000000\tab 17.000000\tab 3.00000\tab 2.000000\tab 2.000000\tab 70592.50000\tab 11305.000000\tab 10885.000000\tab 50822.500000\tab 2010.000000\tab 0.000000\tab NaN\par
+max\tab 479.000000\tab 64.000000\tab 999435.000000\tab 2000.000000\tab 2047.590000\tab 1.000000e+07\tab 100500.000000\tab 0.000000\tab 23.000000\tab 4.00000\tab 2.000000\tab 3.000000\tab 114920.00000\tab 21450.000000\tab 23670.000000\tab 79560.000000\tab 2015.000000\tab 1.000000\tab NaN\par
+Some variables such as 'policy_bind_date', 'incident_date', 'incident_location' and 'insured_zip' contain very high number of level. We will remove these columns for our purposes.\par
+df.auto_year.value_counts()  # check the spread of years to decide on further action.\par
+1995    56\par
+1999    55\par
+2005    54\par
+2011    53\par
+2006    53\par
+2007    52\par
+2003    51\par
+2010    50\par
+2009    50\par
+2013    49\par
+2002    49\par
+2015    47\par
+1997    46\par
+2012    46\par
+2008    45\par
+2014    44\par
+2001    42\par
+2000    42\par
+1998    40\par
+2004    39\par
+1996    37\par
+Name: auto_year, dtype: int64\par
+auto_year has 21 levels, and the number of records for each of the levels are quite significant considering datasize is not so large. We will do some feature engineering using this variable considering, the year of manufacturing of automobile indicates the age of the vehicle and may contain valuable information for insurance premium or fraud is concerned.\par
+df['vehicle_age'] = 2018 - df['auto_year'] # Deriving the age of the vehicle based on the year value \par
+df['vehicle_age'].head(10)\par
+0    14\par
+1    11\par
+2    11\par
+3     4\par
+4     9\par
+5    15\par
+6     6\par
+7     3\par
+8     6\par
+9    22\par
+Name: vehicle_age, dtype: int64\par
+bins = [-1, 3, 6, 9, 12, 17, 20, 24]  # Factorize according to the time period of the day.\par
+names = ["past_midnight", "early_morning", "morning", 'fore-noon', 'afternoon', 'evening', 'night']\par
+df['incident_period_of_day'] = pd.cut(df.incident_hour_of_the_day, bins, labels=names).astype(object)\par
+df[['incident_hour_of_the_day', 'incident_period_of_day']].head(20)\par
+incident_hour_of_the_day\tab incident_period_of_day\par
+0\tab 5\tab early_morning\par
+1\tab 8\tab morning\par
+2\tab 7\tab morning\par
+3\tab 5\tab early_morning\par
+4\tab 20\tab evening\par
+5\tab 19\tab evening\par
+6\tab 0\tab past_midnight\par
+7\tab 23\tab night\par
+8\tab 21\tab night\par
+9\tab 14\tab afternoon\par
+10\tab 22\tab night\par
+11\tab 21\tab night\par
+12\tab 9\tab morning\par
+13\tab 5\tab early_morning\par
+14\tab 12\tab fore-noon\par
+15\tab 12\tab fore-noon\par
+16\tab 0\tab past_midnight\par
+17\tab 9\tab morning\par
+18\tab 19\tab evening\par
+19\tab 8\tab morning\par
+# Check on categorical variables:\par
+df.select_dtypes(include=['object']).columns  # checking categorcial columns\par
+Index(['policy_bind_date', 'policy_state', 'policy_csl', 'insured_zip',\par
+       'insured_sex', 'insured_education_level', 'insured_occupation',\par
+       'insured_hobbies', 'insured_relationship', 'incident_date',\par
+       'incident_type', 'collision_type', 'incident_severity',\par
+       'authorities_contacted', 'incident_state', 'incident_city',\par
+       'incident_location', 'property_damage', 'police_report_available',\par
+       'auto_make', 'auto_model', 'incident_period_of_day'],\par
+      dtype='object')\par
+# dropping unimportant columns\par
+\par
+df = df.drop(columns = [\par
+    'policy_number', \par
+    'insured_zip', \par
+    'policy_bind_date', \par
+    'incident_date', \par
+    'incident_location', \par
+    '_c39', \par
+    'auto_year', \par
+    'incident_hour_of_the_day'])\par
+\par
+df.head(2)\par
+
+\pard\widctlpar\sa160\sl252\slmult1\kerning2\f2\par
+
+\pard\cbpat8\widctlpar\sa240\qc\cf1\kerning0\b\f0\fs36 Zomato Restaurant\par
+
+\pard\cbpat8\widctlpar\sa240\fs28 Project Description\par
+
+\pard\cbpat8\widctlpar\cf4\b0\fs22 Zomato Data Analysis is one of the most useful analysis for foodies who want to taste the best\par
+cuisines of every part of the world which lies in their budget. This analysis is also for those who\par
+want to find the value for money restaurants in various parts of the country for the cuisines.\par
+Additionally, this analysis caters the needs of people who are striving to get the best cuisine of\par
+the country and which locality of that country serves that cuisines with maximum number of\par
+restaurants.\par
+\par
+\b Data Storage:\b0\par
+This problem statement contains two datasets-\~\b Zomato.csv\b0\~and\~\b country_code.csv.\b0\par
+\b Country_code.csv\b0\~contains two variables:\par
+\f4\'b7\f0  Country code\par
+\f4\'b7\f0  Country name\par
+\par
+The collected data has been stored in the Comma Separated Value file\~\b Zomato.csv\b0 . Each\par
+restaurant in the dataset is uniquely identified by its Restaurant Id. Every Restaurant contains the following variables:\par
+\bullet  Restaurant Id: Unique id of every restaurant across various cities of the world\par
+\bullet  Restaurant Name: Name of the restaurant\par
+\bullet  Country Code: Country in which restaurant is located\par
+\bullet  City: City in which restaurant is located\par
+\bullet  Address: Address of the restaurant\par
+\bullet  Locality: Location in the city\par
+\bullet  Locality Verbose: Detailed description of the locality\par
+\bullet  Longitude: Longitude coordinate of the restaurant&#39;s location\par
+\bullet  Latitude: Latitude coordinate of the restaurant&#39;s location\par
+\bullet  Cuisines: Cuisines offered by the restaurant\par
+\bullet  Average Cost for two: Cost for two people in different currencies \par
+\bullet  Currency: Currency of the country\par
+\bullet  Has Table booking: yes/no\par
+\bullet  Has Online delivery: yes/ no\par
+\bullet  Is delivering: yes/ no\par
+\bullet  Switch to order menu: yes/no\par
+\bullet  Price range: range of price of food\par
+\bullet  Aggregate Rating: Average rating out of 5\par
+\bullet  Rating color: depending upon the average rating color\par
+\bullet  Rating text: text on the basis of rating of rating\par
+\bullet  Votes: Number of ratings casted by people\par
+\par
+\b Problem statement : In this dataset predict 2 things \endash\b0\par
+1) Average Cost for two\par
+2) Price range\par
+\par
+\par
+\b H\fs21 int :\b0\~Use pandas methods to combine all the datasets and then start working on this project.\par
+\par
+
+\pard\cbpat8\widctlpar\sb158\sa158\cf0\fs22 zomato\par
+Zomato Analysis:\par
+ANSWER - Zomato API Analysis is one of the most useful analysis for foodies who want to taste the best cuisines of every part of the world which lies in their budget. This analysis is also for those who want to find the value for money restaurants in various parts of the country for the cuisines. Additionally, this analysis caters the needs of people who are striving to get the best cuisine of the country and which locality of that country serves that cuisines with maximum number of restaurants.:hotsprings:\par
+\par
+For more information on Zomato API and Zomato API key\par
+\f3\bullet  Visit : {{\field{\*\fldinst{HYPERLINK https://developers.zomato.com/api#headline1 }}{\fldrslt{https://developers.zomato.com/api#headline1\ul0\cf0}}}}\f3\fs22\par
+\bullet  Data Collection: {{\field{\*\fldinst{HYPERLINK https://developers.zomato.com/documentation }}{\fldrslt{https://developers.zomato.com/documentation\ul0\cf0}}}}\f3\fs22\par
+\par
+Data\par
+Fetching the data:\par
+\bullet  Data has been collected from the Zomato API in the form of .json files(raw data) using the url=https://developers.zomato.com/api/v2.1/search?entity_id=1&entity_type=city&start=1&count=20\par
+\bullet  Raw data can be seen here\par
+\par
+Data Collection:\par
+Data collected can be seen as a raw .json file here\par
+\par
+Data Processing :\par
+Data Processing has been done on the following categories: Processed_Data\par
+\par
+Currency\par
+City\par
+Location\par
+Rating Text\par
+Data Storage:\par
+The collected data has been stored in the Comma Separated Value file Zomato.csv. Each restaurant in the dataset is uniquely identified by its Restaurant Id. Every Restaurant contains the following variables:\par
+\par
+\bullet  Restaurant Id: Unique id of every restaurant across various cities of the world\par
+\bullet  Restaurant Name: Name of the restaurant\par
+\bullet  Country Code: Country in which restaurant is located\par
+\bullet  City: City in which restaurant is located\par
+\bullet  Address: Address of the restaurant\par
+\bullet  Locality: Location in the city\par
+\bullet  Locality Verbose: Detailed description of the locality\par
+\bullet  Longitude: Longitude coordinate of the restaurant's location\par
+\bullet  Latitude: Latitude coordinate of the restaurant's location\par
+\bullet  Cuisines: Cuisines offered by the restaurant\par
+\bullet  Average Cost for two: Cost for two people in different currencies \f5\u-10179?\u-9109?\f0\par
+\f3\bullet  Currency: Currency of the country\par
+\bullet  Has Table booking: yes/no\par
+\bullet  Has Online delivery: yes/ no\par
+\bullet  Is delivering: yes/ no\par
+\bullet  Switch to order menu: yes/no\par
+\bullet  Price range: range of price of food\par
+\bullet  Aggregate Rating: Average rating out of 5\par
+\bullet  Rating color: depending upon the average rating color\par
+\bullet  Rating text: text on the basis of rating of rating\par
+\bullet  Votes: Number of ratings casted by people\par
+\par
+Analysis Performed:\par
+Analysis I: highest and lowest rated restaurants in the city (India and U.S.A)\par
+Objective:\par
+To evaluate the Highest Rated and Lowest Rated Restaurant of the City in all the countries. Graph plotted only for countries with maximum restaurants (India and U.S.A)\par
+\par
+Approach:\par
+Using pandas, grouping 'Country' and 'City', the aggregate rating is calculated and then the top and least rated restaurants are found for every city in that country\par
+\par
+Steps:\par
+The file(zomato.csv) is read for the input to the data frame.\par
+The data is grouped by Country Code and City and reverse sorted to evaluate to the highest rated and lowest rated restaurants of all the countries.\par
+Merge the two data frames with highest rated and lowest rated restaurants in the city.\par
+Filter the data for two countries India and U.S.A.\par
+Plot the graph for two countries depicting all the cities in two countries with the highest and lowest rated restaurant with the location.\par
+Deliverables:\par
+\bullet  csv: Analysis1.csv\par
+Download here\par
+\par
+analysis1\par
+\par
+\bullet  Grouped Bar Chart1: Restaurants rating in India\par
+Download here\par
+\par
+analysis1 1_graph\par
+\par
+\bullet  Grouped Bar Chart2: Restaurants rating in U.S.A\par
+Download here\par
+\par
+analysis1 2_graph\par
+\par
+Conclusion:\par
+\f5\u-10179?\u-9139?\f0  From the analysis above (graphs and csv), we can easily determine the highest and lowest rated restaurant \f5\u-10180?\u-8216?\f0  of every city in the United States \f6\u-10180?\u-8710?\u-10180?\u-8712?\f0  and India, depending upon which we may plan to choose our restaurant for the location we are at. \f5\u-10179?\u-8700?\f0\par
+\par
+Analysis II: Populr cuisine of a country with location where it is served and number of restaurants serving that cuisine in that location\par
+Objective:\par
+To evaluate the most popular cuisine of the world sold in a country and which locality in that country has most number of outlets selling that cuisine. Graph plotted only for the best cuisine of the country and the location where this cuisine is most popular with the count of places selling that cuisine.\par
+\par
+Approach:\par
+Using pandas, splitting the multiple cuisines and stacking them up with the location, melting them with locality, grouping the locality and then country code and then reverse sorting the count of restaurants in the country with their names.\par
+\par
+Steps:\par
+The file(zomato.csv) is read for the input to the data frame.\par
+DataFrame is filtered for all not null values for cuisines.\par
+Series Cuisines is splitted by \lquote ,\rquote  for separate different cuisine values as a new dataframe.\par
+Concatenate the dataframe Zomato with cuisines.\par
+For every locality stack the cuisines(all cuisines displayed row wise than columns).\par
+Melt the cuisine values for every row.\par
+The rows are grouped by Locality Verbose and sorted by reverse count and store it in a dataframe \lquote loc\rquote .\par
+Merge zomato and loc dataframe on Locality Verbose.\par
+Group by the dataframe in step 8 on \lquote Country Code\rquote .\par
+Reverse Sort the data on the basis of the Number of restaurants in the city for that cuisines.\par
+Plot the graph for the most popular cuisines of the world and which location in that country they are most popular and how many restaurants in that location are selling them.\par
+Horizontal Bar graph 2 represents the most popular cuisines of the India and which location in India they are most popular and how many restaurants in that location are selling them.\par
+
+\pard\sa200\sl276\slmult1\f7\lang9\par
+}
+ 
